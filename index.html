@@ -18,7 +18,7 @@
 <div style="min-height:100vh;display:flex;flex-direction:column;font-family:'Archivo',system-ui,sans-serif">
   <header style="background:#12303F;color:#fff;padding:22px 32px;display:flex;flex-wrap:wrap;gap:24px;align-items:center;justify-content:space-between">
     <div style="display:flex;align-items:center;gap:24px">
-      <img src="assets/vereda/vereda-horizontal-branco.png" alt="Vereda Gestão Integrada" style="height:40px;display:block">
+      <img src="assets/vereda/vereda-horizontal-branco.png" alt="Vereda Gestão Integrada" style="height:40px;display:block"></img>
       <div style="width:1px;height:40px;background:#5C6B79"></div>
       <div style="display:flex;flex-direction:column;gap:4px">
         <div style="font-size:11px;font-weight:600;letter-spacing:0.34em;text-transform:uppercase;color:#C8A227">Gerador de convites</div>
@@ -37,20 +37,32 @@
       <div style="display:flex;flex-direction:column;gap:8px">
         <div style="font-size:11px;font-weight:600;letter-spacing:0.34em;text-transform:uppercase;color:#5C6B79">Novo convite</div>
         <div style="font-size:30px;font-weight:900;letter-spacing:-0.03em;line-height:1.1">Preenche o evento.</div>
-        <div style="font-size:14px;line-height:1.5;color:#43535F">O layout, as cores e o logo são fixos. Tu muda as informações e já baixa as imagens prontas.</div>
+        <div style="font-size:14px;line-height:1.5;color:#43535F">O layout, as cores e o logo são fixos. Tu escolhe o modelo, muda as informações e já baixa as imagens prontas.</div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <div style="font-size:11px;font-weight:600;letter-spacing:0.34em;text-transform:uppercase;color:#5C6B79;display:flex;gap:10px"><span style="color:#C8A227">00</span><span>Modelo</span></div>
+        <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px">
+          <sc-for list="{{ modelos }}" as="md" hint-placeholder-count="4">
+            <button onClick="{{ md.pick }}" style="min-height:64px;padding:12px 14px;border-radius:12px;border:2px solid #12303F;background:{{ md.bg }};color:{{ md.fg }};font:inherit;text-align:left;cursor:pointer;display:flex;flex-direction:column;gap:4px">
+              <span style="font-size:14px;font-weight:800">{{ md.label }}</span>
+              <span style="font-size:12px;font-weight:400;line-height:1.3">{{ md.desc }}</span>
+            </button>
+          </sc-for>
+        </div>
       </div>
 
       <div style="display:flex;flex-direction:column;gap:14px">
         <div style="font-size:11px;font-weight:600;letter-spacing:0.34em;text-transform:uppercase;color:#5C6B79;display:flex;gap:10px"><span style="color:#C8A227">01</span><span>Quando</span></div>
         <label style="display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:600">Data
-          <input type="date" value="{{ f.data }}" onChange="{{ on.data }}" style="height:46px;padding:0 14px;font:inherit;font-weight:400;font-size:15px;color:#12303F;background:#E9EEF2;border:2px solid #E9EEF2;border-radius:10px;outline:none" style-focus="border-color:#12303F">
+          <input type="date" value="{{ f.data }}" onChange="{{ on.data }}" style="height:46px;padding:0 14px;font:inherit;font-weight:400;font-size:15px;color:#12303F;background:#E9EEF2;border:2px solid #E9EEF2;border-radius:10px;outline:none" style-focus="border-color:#12303F"></input>
         </label>
         <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px">
           <label style="display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:600">Início
-            <input type="time" value="{{ f.inicio }}" onChange="{{ on.inicio }}" style="height:46px;padding:0 14px;font:inherit;font-weight:400;font-size:15px;color:#12303F;background:#E9EEF2;border:2px solid #E9EEF2;border-radius:10px;outline:none" style-focus="border-color:#12303F">
+            <input type="time" value="{{ f.inicio }}" onChange="{{ on.inicio }}" style="height:46px;padding:0 14px;font:inherit;font-weight:400;font-size:15px;color:#12303F;background:#E9EEF2;border:2px solid #E9EEF2;border-radius:10px;outline:none" style-focus="border-color:#12303F"></input>
           </label>
           <label style="display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:600">Término
-            <input type="time" value="{{ f.fim }}" onChange="{{ on.fim }}" style="height:46px;padding:0 14px;font:inherit;font-weight:400;font-size:15px;color:#12303F;background:#E9EEF2;border:2px solid #E9EEF2;border-radius:10px;outline:none" style-focus="border-color:#12303F">
+            <input type="time" value="{{ f.fim }}" onChange="{{ on.fim }}" style="height:46px;padding:0 14px;font:inherit;font-weight:400;font-size:15px;color:#12303F;background:#E9EEF2;border:2px solid #E9EEF2;border-radius:10px;outline:none" style-focus="border-color:#12303F"></input>
           </label>
         </div>
       </div>
@@ -58,25 +70,31 @@
       <div style="display:flex;flex-direction:column;gap:14px">
         <div style="font-size:11px;font-weight:600;letter-spacing:0.34em;text-transform:uppercase;color:#5C6B79;display:flex;gap:10px"><span style="color:#C8A227">02</span><span>Onde</span></div>
         <label style="display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:600">Nome do local
-          <input type="text" value="{{ f.local }}" onInput="{{ on.local }}" placeholder="Igreja ou espaço" style="height:46px;padding:0 14px;font:inherit;font-weight:400;font-size:15px;color:#12303F;background:#E9EEF2;border:2px solid #E9EEF2;border-radius:10px;outline:none" style-focus="border-color:#12303F">
+          <input type="text" value="{{ f.local }}" onInput="{{ on.local }}" placeholder="Igreja ou espaço" style="height:46px;padding:0 14px;font:inherit;font-weight:400;font-size:15px;color:#12303F;background:#E9EEF2;border:2px solid #E9EEF2;border-radius:10px;outline:none" style-focus="border-color:#12303F"></input>
         </label>
         <label style="display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:600">Endereço
-          <input type="text" value="{{ f.endereco }}" onInput="{{ on.endereco }}" placeholder="Rua, número · Cidade" style="height:46px;padding:0 14px;font:inherit;font-weight:400;font-size:15px;color:#12303F;background:#E9EEF2;border:2px solid #E9EEF2;border-radius:10px;outline:none" style-focus="border-color:#12303F">
+          <input type="text" value="{{ f.endereco }}" onInput="{{ on.endereco }}" placeholder="Rua, número · Cidade" style="height:46px;padding:0 14px;font:inherit;font-weight:400;font-size:15px;color:#12303F;background:#E9EEF2;border:2px solid #E9EEF2;border-radius:10px;outline:none" style-focus="border-color:#12303F"></input>
         </label>
       </div>
 
       <div style="display:flex;flex-direction:column;gap:14px">
         <div style="display:flex;justify-content:space-between;align-items:center">
-          <div style="font-size:11px;font-weight:600;letter-spacing:0.34em;text-transform:uppercase;color:#5C6B79;display:flex;gap:10px"><span style="color:#C8A227">03</span><span>Investimento</span></div>
-          <label style="display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600"><input type="checkbox" checked="{{ f.showInvest }}" onChange="{{ on.showInvest }}">Mostrar</label>
+          <div style="font-size:11px;font-weight:600;letter-spacing:0.34em;text-transform:uppercase;color:#5C6B79;display:flex;gap:10px"><span style="color:#C8A227">03</span><span>Ingresso solidário</span></div>
+          <label style="display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600"><input type="checkbox" checked="{{ f.showInvest }}" onChange="{{ on.showInvest }}"></input>Mostrar</label>
         </div>
         <sc-if value="{{ f.showInvest }}" hint-placeholder-val="{{ true }}">
+          <div style="display:flex;flex-wrap:wrap;gap:8px">
+            <sc-for list="{{ ingressos }}" as="ig" hint-placeholder-count="2">
+              <button onClick="{{ ig.pick }}" style="min-height:40px;padding:8px 14px;border-radius:999px;border:2px solid #12303F;background:{{ ig.bg }};color:{{ ig.fg }};font:inherit;font-size:13px;font-weight:700;cursor:pointer">{{ ig.label }}</button>
+            </sc-for>
+          </div>
+          <div style="font-size:12px;line-height:1.4;color:#5C6B79">Toca numa opção ou escreve outra coisa nos campos abaixo.</div>
           <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:12px">
-            <label style="display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:600">Valor
-              <input type="text" value="{{ f.investValor }}" onInput="{{ on.investValor }}" placeholder="R$ 50 ou Gratuito" style="height:46px;padding:0 14px;font:inherit;font-weight:400;font-size:15px;color:#12303F;background:#E9EEF2;border:2px solid #E9EEF2;border-radius:10px;outline:none" style-focus="border-color:#12303F">
+            <label style="display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:600">Destaque
+              <input type="text" maxlength="12" value="{{ f.investValor }}" onInput="{{ on.investValor }}" placeholder="Materiais" style="height:46px;padding:0 14px;font:inherit;font-weight:400;font-size:15px;color:#12303F;background:#E9EEF2;border:2px solid #E9EEF2;border-radius:10px;outline:none" style-focus="border-color:#12303F"></input>
             </label>
-            <label style="display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:600">Observação
-              <input type="text" value="{{ f.investObs }}" onInput="{{ on.investObs }}" placeholder="por pessoa" style="height:46px;padding:0 14px;font:inherit;font-weight:400;font-size:15px;color:#12303F;background:#E9EEF2;border:2px solid #E9EEF2;border-radius:10px;outline:none" style-focus="border-color:#12303F">
+            <label style="display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:600">Complemento
+              <input type="text" maxlength="30" value="{{ f.investObs }}" onInput="{{ on.investObs }}" placeholder="de higiene pessoal" style="height:46px;padding:0 14px;font:inherit;font-weight:400;font-size:15px;color:#12303F;background:#E9EEF2;border:2px solid #E9EEF2;border-radius:10px;outline:none" style-focus="border-color:#12303F"></input>
             </label>
           </div>
         </sc-if>
@@ -85,17 +103,17 @@
       <div style="display:flex;flex-direction:column;gap:14px">
         <div style="display:flex;justify-content:space-between;align-items:center">
           <div style="font-size:11px;font-weight:600;letter-spacing:0.34em;text-transform:uppercase;color:#5C6B79;display:flex;gap:10px"><span style="color:#C8A227">04</span><span>Chamada do evento</span></div>
-          <label style="display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600"><input type="checkbox" checked="{{ f.showChamada }}" onChange="{{ on.showChamada }}">Mostrar</label>
+          <label style="display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600"><input type="checkbox" checked="{{ f.showChamada }}" onChange="{{ on.showChamada }}"></input>Mostrar</label>
         </div>
         <sc-if value="{{ f.showChamada }}" hint-placeholder-val="{{ true }}">
-          <div style="font-size:12px;line-height:1.5;color:#5C6B79">A faixa azul embaixo do arco. Marca o que esse encontro tem de especial. Desmarca "Mostrar" se não tiver nada.</div>
+          <div style="font-size:12px;line-height:1.5;color:#5C6B79">A faixa azul do convite. Marca o que esse encontro tem de especial. Desmarca "Mostrar" se não tiver nada.</div>
           <div style="display:flex;flex-wrap:wrap;gap:8px">
             <sc-for list="{{ sugestoes }}" as="sg" hint-placeholder-count="3">
               <button onClick="{{ sg.pick }}" style="height:34px;padding:0 14px;border-radius:999px;border:2px solid #12303F;background:{{ sg.bg }};color:{{ sg.fg }};font:inherit;font-size:12px;font-weight:600;cursor:pointer">{{ sg.label }}</button>
             </sc-for>
           </div>
           <label style="display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:600">Ou escreve a tua, até 26 letras
-            <input type="text" maxlength="26" value="{{ f.chamada }}" onInput="{{ on.chamada }}" placeholder="Último encontro do ano" style="height:46px;padding:0 14px;font:inherit;font-weight:400;font-size:15px;color:#12303F;background:#E9EEF2;border:2px solid #E9EEF2;border-radius:10px;outline:none" style-focus="border-color:#12303F">
+            <input type="text" maxlength="26" value="{{ f.chamada }}" onInput="{{ on.chamada }}" placeholder="Último encontro do ano" style="height:46px;padding:0 14px;font:inherit;font-weight:400;font-size:15px;color:#12303F;background:#E9EEF2;border:2px solid #E9EEF2;border-radius:10px;outline:none" style-focus="border-color:#12303F"></input>
           </label>
         </sc-if>
       </div>
@@ -103,11 +121,11 @@
       <div style="display:flex;flex-direction:column;gap:14px">
         <div style="display:flex;justify-content:space-between;align-items:center">
           <div style="font-size:11px;font-weight:600;letter-spacing:0.34em;text-transform:uppercase;color:#5C6B79;display:flex;gap:10px"><span style="color:#C8A227">05</span><span>Igreja parceira</span></div>
-          <label style="display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600"><input type="checkbox" checked="{{ f.showParceiro }}" onChange="{{ on.showParceiro }}">Mostrar</label>
+          <label style="display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600"><input type="checkbox" checked="{{ f.showParceiro }}" onChange="{{ on.showParceiro }}"></input>Mostrar</label>
         </div>
         <sc-if value="{{ f.showParceiro }}" hint-placeholder-val="{{ true }}">
           <label onDragOver="{{ dz.parceiro.over }}" onDragLeave="{{ dz.parceiro.leave }}" onDrop="{{ dz.parceiro.drop }}" style="display:flex;align-items:center;gap:16px;padding:16px;border-radius:14px;border:2px dashed {{ dz.parceiro.border }};background:{{ dz.parceiro.bg }};cursor:pointer">
-            <input type="file" accept="image/*" onChange="{{ on.parceiroFile }}" style="display:none">
+            <input type="file" accept="image/*" onChange="{{ on.parceiroFile }}" style="display:none"></input>
             <div style="flex:1;display:flex;flex-direction:column;gap:4px">
               <div style="font-size:14px;font-weight:700">{{ parceiroBtn }}</div>
               <div style="font-size:12px;color:#5C6B79">Arrasta o arquivo até aqui ou clica pra escolher</div>
@@ -123,21 +141,49 @@
       <div style="display:flex;flex-direction:column;gap:14px">
         <div style="display:flex;justify-content:space-between;align-items:center">
           <div style="font-size:11px;font-weight:600;letter-spacing:0.34em;text-transform:uppercase;color:#5C6B79;display:flex;gap:10px"><span style="color:#C8A227">06</span><span>Preletores</span></div>
-          <label style="display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600"><input type="checkbox" checked="{{ f.showPreletores }}" onChange="{{ on.showPreletores }}">Mostrar</label>
+          <div style="font-size:12px;font-weight:600;color:#5C6B79">{{ contagem }}</div>
         </div>
-        <sc-if value="{{ f.showPreletores }}" hint-placeholder-val="{{ true }}">
-          <label onDragOver="{{ dz.foto.over }}" onDragLeave="{{ dz.foto.leave }}" onDrop="{{ dz.foto.drop }}" style="display:flex;align-items:center;gap:16px;padding:16px;border-radius:14px;border:2px dashed {{ dz.foto.border }};background:{{ dz.foto.bg }};cursor:pointer">
-            <input type="file" accept="image/*" onChange="{{ on.fotoFile }}" style="display:none">
-            <div style="width:88px;height:62px;border-radius:10px;flex-shrink:0;background-color:#fff;background-image:url({{ fotoThumb }});background-size:cover;background-position:center"></div>
-            <div style="flex:1;display:flex;flex-direction:column;gap:4px">
-              <div style="font-size:14px;font-weight:700">Trocar foto dos preletores</div>
-              <div style="font-size:12px;color:#5C6B79">Arrasta o arquivo até aqui ou clica pra escolher</div>
+        <div style="font-size:12px;line-height:1.5;color:#5C6B79">Toca em quem vai estar no evento. A ordem do convite é a ordem em que tu marca. O layout se reorganiza sozinho.</div>
+        <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px">
+          <sc-for list="{{ pessoas }}" as="p" hint-placeholder-count="6">
+            <div style="position:relative">
+              <button onClick="{{ p.toggle }}" style="width:100%;min-height:56px;padding:6px 10px 6px 6px;border-radius:12px;border:2px solid {{ p.border }};background:{{ p.bg }};font:inherit;color:#12303F;text-align:left;cursor:pointer;display:flex;align-items:center;gap:10px">
+                <span style="width:42px;height:42px;border-radius:50%;flex-shrink:0;overflow:hidden;background:#0D3566;display:block"><div style="width:63px;height:84px;margin-left:-10px;margin-top:-6px;display:block;background-image:url({{ p.foto }});background-repeat:no-repeat;background-size:100% 100%;"></div></span>
+                <span style="flex:1;min-width:0;font-size:13px;font-weight:600;line-height:1.2">{{ p.nome }}</span>
+                <span style="width:22px;height:22px;border-radius:50%;flex-shrink:0;background:{{ p.badgeBg }};color:#12303F;font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center">{{ p.ordem }}</span>
+              </button>
+              <sc-if value="{{ p.extra }}" hint-placeholder-val="{{ false }}">
+                <button onClick="{{ p.remover }}" title="Remover" style="position:absolute;top:-8px;right:-8px;width:24px;height:24px;border-radius:50%;border:none;background:#12303F;color:#fff;font:inherit;font-size:13px;font-weight:700;cursor:pointer;line-height:1">×</button>
+              </sc-if>
             </div>
+          </sc-for>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:10px;padding:16px;border-radius:14px;background:#E9EEF2">
+          <div style="font-size:13px;font-weight:700">+ Adicionar pessoa</div>
+          <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px">
+            <input type="text" maxlength="18" value="{{ f.novoNome }}" onInput="{{ on.novoNome }}" placeholder="Nome (até 18)" style="height:42px;padding:0 12px;font:inherit;font-size:14px;color:#12303F;background:#fff;border:2px solid #fff;border-radius:10px;outline:none" style-focus="border-color:#12303F"></input>
+            <input type="text" maxlength="24" value="{{ f.novoPapel }}" onInput="{{ on.novoPapel }}" placeholder="Igreja (opcional)" style="height:42px;padding:0 12px;font:inherit;font-size:14px;color:#12303F;background:#fff;border:2px solid #fff;border-radius:10px;outline:none" style-focus="border-color:#12303F"></input>
+          </div>
+          <label onDragOver="{{ dz.novo.over }}" onDragLeave="{{ dz.novo.leave }}" onDrop="{{ dz.novo.drop }}" style="display:flex;flex-direction:column;gap:4px;padding:14px;border-radius:12px;border:2px dashed {{ dz.novo.border }};background:{{ dz.novo.bg2 }};cursor:pointer">
+            <input type="file" accept="image/*" onChange="{{ on.novoFile }}" style="display:none"></input>
+            <div style="font-size:13px;font-weight:700">Enviar foto</div>
+            <div style="font-size:12px;color:#5C6B79">Arrasta ou clica. O fundo sai sozinho. Prefere foto do peito pra cima.</div>
           </label>
-          <div style="font-size:12px;line-height:1.5;color:#5C6B79">Manda a montagem com todos juntos. O sistema separa as pessoas do fundo pra as cabeças saírem do arco.</div>
-          <label style="display:grid;grid-template-columns:90px 1fr;align-items:center;gap:12px;font-size:13px;font-weight:600">Horizontal<input type="range" min="-300" max="300" step="5" value="{{ f.fx }}" onInput="{{ on.fx }}"></label>
-          <label style="display:grid;grid-template-columns:90px 1fr;align-items:center;gap:12px;font-size:13px;font-weight:600">Vertical<input type="range" min="100" max="500" step="5" value="{{ f.fy }}" onInput="{{ on.fy }}"></label>
-          <label style="display:grid;grid-template-columns:90px 1fr;align-items:center;gap:12px;font-size:13px;font-weight:600">Tamanho<input type="range" min="700" max="1500" step="10" value="{{ f.fw }}" onInput="{{ on.fw }}"></label>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div style="font-size:13px;font-weight:600">Tratamento da foto</div>
+          <div style="display:flex;gap:8px">
+            <sc-for list="{{ tratamentos }}" as="t" hint-placeholder-count="3">
+              <button onClick="{{ t.pick }}" style="flex:1;height:38px;border-radius:999px;border:2px solid #12303F;background:{{ t.bg }};color:{{ t.fg }};font:inherit;font-size:13px;font-weight:600;cursor:pointer">{{ t.label }}</button>
+            </sc-for>
+          </div>
+        </div>
+        <sc-if value="{{ m.arco }}" hint-placeholder-val="{{ true }}">
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <div style="font-size:13px;font-weight:600">Ajuste das pessoas no arco</div>
+            <label style="display:grid;grid-template-columns:90px 1fr;align-items:center;gap:12px;font-size:13px;font-weight:600">Altura<input type="range" min="-200" max="200" step="5" value="{{ f.ajY }}" onInput="{{ on.ajY }}"></input></label>
+            <label style="display:grid;grid-template-columns:90px 1fr;align-items:center;gap:12px;font-size:13px;font-weight:600">Tamanho<input type="range" min="75" max="125" step="1" value="{{ f.ajS }}" onInput="{{ on.ajS }}"></input></label>
+          </div>
         </sc-if>
       </div>
 
@@ -147,63 +193,159 @@
     <main style="flex:1 1 440px;padding:40px;position:relative;background-color:#E9EEF2;background-image:url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2256%22%20height%3D%2297%22%20viewBox%3D%220%200%2056%2097%22%3E%3Cpath%20d%3D%22M28%200L56%2016.2V48.5L28%2064.7L0%2048.5V16.2Z%20M28%2064.7V97%22%20fill%3D%22none%22%20stroke%3D%22%2312303F%22%20stroke-opacity%3D%220.1%22%20stroke-width%3D%221%22%2F%3E%3C%2Fsvg%3E');background-size:56px 97px;display:flex;flex-wrap:wrap;gap:40px;align-content:flex-start;justify-content:center">
 
       <div style="display:flex;flex-direction:column;gap:16px">
-        <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:16px">
-          <div style="display:flex;flex-direction:column;gap:4px">
-            <div style="font-size:11px;font-weight:600;letter-spacing:0.34em;text-transform:uppercase;color:#5C6B79">1080 × 1920</div>
-            <div style="font-size:18px;font-weight:700">Story e status do WhatsApp</div>
-          </div>
+        <div style="display:flex;flex-direction:column;gap:4px">
+          <div style="font-size:11px;font-weight:600;letter-spacing:0.34em;text-transform:uppercase;color:#5C6B79">1080 × 1920 · {{ modeloNome }}</div>
+          <div style="font-size:18px;font-weight:700">Story e status do WhatsApp</div>
         </div>
         <div style="width:389px;height:691px;overflow:hidden;border-radius:16px;background:#0D3566;box-shadow:0 20px 40px rgba(18,48,63,0.18)">
           <div ref="{{ storyRef }}" style="width:1080px;height:1920px;position:relative;overflow:hidden;background:#0D3566;color:#fff;font-family:'Jost',sans-serif;transform:scale(0.36);transform-origin:0 0">
-            <img src="assets/simbolo-preto.svg" alt="" style="position:absolute;right:-380px;bottom:420px;width:1100px;opacity:0.06;filter:brightness(0) invert(1)">
-            <div style="position:absolute;left:120px;right:120px;top:300px;height:1000px;border-radius:420px 420px 0 0;overflow:hidden;background:#2B82EE">
-              <sc-if value="{{ f.showPreletores }}" hint-placeholder-val="{{ true }}">
-                <img src="{{ f.fundo }}" alt="" style="position:absolute;left:{{ s.fxA }}px;top:{{ s.fyA }}px;width:{{ s.fw }}px;-webkit-mask-image:linear-gradient(180deg,#000 0%,#000 74%,transparent 98%);mask-image:linear-gradient(180deg,#000 0%,#000 74%,transparent 98%)">
-              </sc-if>
-              <sc-if value="{{ semPreletores }}" hint-placeholder-val="{{ false }}">
-                <img src="assets/simbolo-negativo.svg" alt="" style="position:absolute;left:50%;top:150px;width:300px;transform:translateX(-50%)">
-              </sc-if>
-              <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,53,102,0) 68%,rgba(13,53,102,0.95) 90%)"></div>
-            </div>
-            <sc-if value="{{ temRecorte }}" hint-placeholder-val="{{ true }}">
-              <img src="{{ f.recorte }}" alt="" style="position:absolute;z-index:3;left:{{ s.fx }}px;top:{{ s.fy }}px;width:{{ s.fw }}px;-webkit-mask-image:linear-gradient(180deg,#000 0%,#000 74%,transparent 98%);mask-image:linear-gradient(180deg,#000 0%,#000 74%,transparent 98%)">
-            </sc-if>
-            <div style="position:absolute;left:120px;right:120px;bottom:720px;z-index:4;display:flex;flex-direction:column;align-items:center;gap:22px;text-align:center">
-              <div style="font-size:28px;letter-spacing:0.24em;text-transform:uppercase;font-weight:600;background:#0D3566;color:#fff;padding:14px 32px;border-radius:999px">Imersão de cura e libertação</div>
-              <div style="font-size:112px;font-weight:300;line-height:1;letter-spacing:-0.02em">Venha como<br>você <span style="font-style:italic">está.</span></div>
-            </div>
-            <div style="position:absolute;left:96px;right:96px;top:96px;z-index:4;display:flex;justify-content:space-between;align-items:center">
-              <img src="assets/logo-negativo.svg" alt="Liberta-me" style="height:150px">
-              <sc-if value="{{ f.showParceiro }}" hint-placeholder-val="{{ true }}">
-                <div style="width:{{ pc.sw }}px;height:{{ pc.sh }}px;border-radius:{{ pc.r }};background:{{ pc.bg }};display:flex;align-items:center;justify-content:flex-end"><div style="width: 188px; height: 131px; background-image: url({{ parceiroSrc }}); background-size: contain; background-position: right center; background-repeat: no-repeat"></div></div>
-              </sc-if>
-            </div>
-            <sc-if value="{{ f.showChamada }}" hint-placeholder-val="{{ true }}">
-              <div style="position:absolute;z-index:5;left:50%;top:1250px;transform:translateX(-50%);background:#2B82EE;color:#fff;font-size:38px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;padding:20px 48px;border-radius:999px;white-space:nowrap">{{ f.chamada }}</div>
-            </sc-if>
-            <div style="position:absolute;left:120px;right:120px;bottom:96px;display:flex;flex-direction:column;gap:40px">
-              <div style="display:flex;justify-content:space-between;gap:40px;align-items:center">
-                <div style="font-size:190px;line-height:0.85;font-weight:300;letter-spacing:-0.04em">{{ d.dia }}<span style="color:#2B82EE">.</span>{{ d.mes }}</div>
-                <div style="display:flex;flex-direction:column;gap:8px;border-left:3px solid #2B82EE;padding-left:40px">
-                  <div style="font-size:36px;letter-spacing:0.2em;text-transform:uppercase;font-weight:600;color:#2B82EE">{{ d.semana }}</div>
-                  <div style="font-size:{{ s.horaFs }}px;font-weight:400;line-height:1;white-space:nowrap">{{ d.horario }}</div>
-                </div>
+            <img src="assets/simbolo-preto.svg" alt="" style="position:absolute;right:-380px;bottom:420px;width:1100px;opacity:0.06;filter:brightness(0) invert(1)"></img>
+
+            <sc-if value="{{ m.arco }}" hint-placeholder-val="{{ true }}">
+              <div style="position:absolute;left:120px;right:120px;top:300px;height:1000px;border-radius:420px 420px 0 0;overflow:hidden;background:linear-gradient(180deg,#2B82EE 0%,#1F5FB0 100%)">
+                <sc-if value="{{ semPessoas }}" hint-placeholder-val="{{ false }}">
+                  <img src="assets/simbolo-negativo.svg" alt="" style="position:absolute;left:50%;top:150px;width:300px;transform:translateX(-50%)"></img>
+                </sc-if>
+                <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,53,102,0) 68%,rgba(13,53,102,0.95) 90%)"></div>
               </div>
-              <div style="display:grid;grid-template-columns:{{ cols }};gap:24px">
-                <div style="background:#fff;color:#0D3566;padding:36px 44px;border-radius:28px;display:flex;flex-direction:column;gap:8px">
-                  <div style="font-size:24px;letter-spacing:0.22em;text-transform:uppercase;font-weight:600;color:#2B82EE">Onde</div>
-                  <div style="font-size:{{ s.localFs }}px;font-weight:500;line-height:1.15">{{ f.local }}</div>
-                  <div style="font-size:{{ s.endFs }}px;font-weight:400;line-height:1.3">{{ f.endereco }}</div>
+              <sc-for list="{{ S.arco }}" as="row" hint-placeholder-count="1">
+                <div style="position:absolute;left:0;right:0;top:{{ row.top }}px;padding-left:{{ row.pl }}px;padding-right:{{ row.pr }}px;z-index:3;display:flex;justify-content:center;pointer-events:none">
+                  <sc-for list="{{ row.items }}" as="p" hint-placeholder-count="3">
+                    <div style="width:{{ p.w }}px;height:{{ p.h }}px;margin-left:{{ p.ml }}px;flex-shrink:0;filter:{{ p.filter }};-webkit-mask-image:linear-gradient(180deg,#000 0%,#000 70%,transparent 100%);mask-image:linear-gradient(180deg,#000 0%,#000 70%,transparent 100%);background-image:url({{ p.foto }});background-repeat:no-repeat;background-size:100% 100%;"></div>
+                  </sc-for>
                 </div>
-                <sc-if value="{{ f.showInvest }}" hint-placeholder-val="{{ true }}">
-                  <div style="background:#fff;color:#0D3566;padding:36px 40px;border-radius:28px;display:flex;flex-direction:column;gap:8px">
-                    <div style="font-size:24px;letter-spacing:0.22em;text-transform:uppercase;font-weight:600;color:#2B82EE">Investimento</div>
-                    <div style="font-size:{{ s.investFs }}px;font-weight:500;line-height:1.05;letter-spacing:-0.01em">{{ f.investValor }}</div>
-                    <div style="font-size:30px;font-weight:400;line-height:1.3">{{ f.investObs }}</div>
-                  </div>
+              </sc-for>
+              <div style="position:absolute;left:120px;right:120px;top:960px;height:340px;z-index:3;background:linear-gradient(180deg,rgba(13,53,102,0) 0%,rgba(13,53,102,0.85) 70%,#0D3566 100%);pointer-events:none"></div>
+              <div style="position:absolute;left:120px;right:120px;bottom:720px;z-index:4;display:flex;flex-direction:column;align-items:center;gap:22px;text-align:center">
+                <div style="font-size:28px;letter-spacing:0.24em;text-transform:uppercase;font-weight:600;background:#0D3566;color:#fff;padding:14px 32px;border-radius:999px">Imersão de cura e libertação</div>
+                <div style="font-size:112px;font-weight:300;line-height:1;letter-spacing:-0.02em">Venha como<br>você <span style="font-style:italic">está.</span></div>
+              </div>
+              <div style="position:absolute;left:96px;right:96px;top:96px;z-index:4;display:flex;justify-content:space-between;align-items:center">
+                <img src="assets/logo-negativo.svg" alt="Liberta-me" style="height:150px"></img>
+                <sc-if value="{{ f.showParceiro }}" hint-placeholder-val="{{ true }}">
+                  <div style="width:{{ pc.sw }}px;height:{{ pc.sh }}px;border-radius:{{ pc.r }};background:{{ pc.bg }};display:flex;align-items:center;justify-content:flex-end"><div style="width:100%;height:100%;background-image:url({{ parceiroSrc }});background-size:contain;background-position:right center;background-repeat:no-repeat"></div></div>
                 </sc-if>
               </div>
-            </div>
+              <sc-if value="{{ f.showChamada }}" hint-placeholder-val="{{ true }}">
+                <div style="position:absolute;z-index:5;left:50%;top:1250px;transform:translateX(-50%);background:#2B82EE;color:#fff;font-size:38px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;padding:20px 48px;border-radius:999px;white-space:nowrap">{{ f.chamada }}</div>
+              </sc-if>
+              <div style="position:absolute;left:120px;right:120px;bottom:96px;display:flex;flex-direction:column;gap:40px">
+                <div style="display:flex;justify-content:space-between;gap:40px;align-items:center">
+                  <div style="font-size:190px;line-height:0.85;font-weight:300;letter-spacing:-0.04em">{{ d.dia }}<span style="color:#2B82EE">.</span>{{ d.mes }}</div>
+                  <div style="display:flex;flex-direction:column;gap:8px;border-left:3px solid #2B82EE;padding-left:40px">
+                    <div style="font-size:36px;letter-spacing:0.2em;text-transform:uppercase;font-weight:600;color:#2B82EE">{{ d.semana }}</div>
+                    <div style="font-size:{{ s.horaFs }}px;font-weight:400;line-height:1;white-space:nowrap">{{ d.horario }}</div>
+                  </div>
+                </div>
+                <div style="display:grid;grid-template-columns:{{ cols }};gap:24px">
+                  <div style="background:#fff;color:#0D3566;padding:36px 44px;border-radius:28px;display:flex;flex-direction:column;gap:8px">
+                    <div style="font-size:24px;letter-spacing:0.22em;text-transform:uppercase;font-weight:600;color:#2B82EE">Onde</div>
+                    <div style="font-size:{{ s.localFs }}px;font-weight:500;line-height:1.15">{{ f.local }}</div>
+                    <div style="font-size:{{ s.endFs }}px;font-weight:400;line-height:1.3">{{ f.endereco }}</div>
+                  </div>
+                  <sc-if value="{{ f.showInvest }}" hint-placeholder-val="{{ true }}">
+                    <div style="background:#fff;color:#0D3566;padding:36px 40px;border-radius:28px;display:flex;flex-direction:column;gap:8px">
+                      <div style="font-size:24px;letter-spacing:0.22em;text-transform:uppercase;font-weight:600;color:#2B82EE">Ingresso solidário</div>
+                      <div style="font-size:{{ s.investFs }}px;font-weight:500;line-height:1.05;letter-spacing:-0.01em">{{ f.investValor }}</div>
+                      <div style="font-size:30px;font-weight:400;line-height:1.3">{{ f.investObs }}</div>
+                    </div>
+                  </sc-if>
+                </div>
+              </div>
+            </sc-if>
+
+            <sc-if value="{{ m.flex }}" hint-placeholder-val="{{ false }}">
+              <div style="position:absolute;inset:0;padding:96px 120px;display:flex;flex-direction:column;gap:36px">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin:0 -24px">
+                  <img src="assets/logo-negativo.svg" alt="Liberta-me" style="height:150px"></img>
+                  <sc-if value="{{ f.showParceiro }}" hint-placeholder-val="{{ true }}">
+                    <div style="width:{{ pc.sw }}px;height:{{ pc.sh }}px;border-radius:{{ pc.r }};background:{{ pc.bg }};display:flex;align-items:center;justify-content:flex-end"><div style="width:100%;height:100%;background-image:url({{ parceiroSrc }});background-size:contain;background-position:right center;background-repeat:no-repeat"></div></div>
+                  </sc-if>
+                </div>
+                <div style="display:flex;flex-direction:column;align-items:center;gap:20px;text-align:center">
+                  <div style="font-size:26px;letter-spacing:0.24em;text-transform:uppercase;font-weight:600;border:2px solid #2B82EE;padding:10px 30px;border-radius:999px">Imersão de cura e libertação</div>
+                  <div style="font-size:80px;font-weight:300;line-height:1;letter-spacing:-0.02em">Venha como você <span style="font-style:italic">está.</span></div>
+                </div>
+                <div ref="{{ zoneSRef }}" style="flex:1;min-height:0;display:flex;flex-direction:column;align-items:center;justify-content:center">
+                  <sc-if value="{{ semPessoas }}" hint-placeholder-val="{{ false }}">
+                    <img src="assets/simbolo-negativo.svg" alt="" style="width:300px"></img>
+                  </sc-if>
+                  <sc-if value="{{ m.cards }}" hint-placeholder-val="{{ false }}">
+                    <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:20px;width:{{ S.cW }}px">
+                      <sc-for list="{{ S.cards }}" as="c" hint-placeholder-count="4">
+                        <div style="width:{{ c.w }}px;border-radius:22px;overflow:hidden;background:#fff;display:flex;flex-direction:column">
+                          <div style="height:{{ c.h }}px;background:linear-gradient(180deg,#0D3566 0%,#2B82EE 100%);overflow:hidden">
+                            <div style="width:100%;height:100%;filter:{{ c.filter }};background-image:url({{ c.foto }});background-repeat:no-repeat;background-size:cover;background-position:50% 22%;"></div>
+                          </div>
+                          <div style="padding:{{ c.pad }}px 10px;display:flex;flex-direction:column;align-items:center;gap:2px;text-align:center;color:#0D3566;border-bottom:7px solid #2B82EE">
+                            <div style="font-size:{{ c.nameFs }}px;font-weight:600;line-height:1.1">{{ c.nome }}</div>
+                            <sc-if value="{{ c.temPapel }}" hint-placeholder-val="{{ false }}"><div style="font-size:{{ c.roleFs }}px;font-weight:400;line-height:1.2">{{ c.papel }}</div></sc-if>
+                          </div>
+                        </div>
+                      </sc-for>
+                    </div>
+                  </sc-if>
+                  <sc-if value="{{ m.ret }}" hint-placeholder-val="{{ false }}">
+                    <div style="width:840px;border-radius:{{ S.retR }}px {{ S.retR }}px 32px 32px;background:linear-gradient(180deg,rgba(43,130,238,0.45) 0%,rgba(43,130,238,0.12) 100%);border:2px solid rgba(255,255,255,0.22);padding:{{ S.retPad }}px 36px 40px;display:flex;flex-direction:column;align-items:center;gap:28px">
+                      <div style="display:flex;align-items:center;gap:16px;font-size:24px;letter-spacing:0.26em;text-transform:uppercase;font-weight:600"><div style="width:48px;height:2px;background:#fff"></div><div>Preletores</div><div style="width:48px;height:2px;background:#fff"></div></div>
+                      <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:32px 24px;width:{{ S.rW }}px">
+                        <sc-for list="{{ S.ret }}" as="c" hint-placeholder-count="4">
+                          <div style="width:{{ c.d }}px;display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center">
+                            <div style="width:{{ c.d }}px;height:{{ c.d }}px;border-radius:50%;border:6px solid #fff;overflow:hidden;background:linear-gradient(180deg,#0D3566 0%,#2B82EE 100%);position:relative">
+                              <div style="position:absolute;left:{{ c.il }}px;top:{{ c.it }}px;width:{{ c.iw }}px;height:{{ c.ih }}px;filter:{{ c.filter }};background-image:url({{ c.foto }});background-repeat:no-repeat;background-size:100% 100%;"></div>
+                            </div>
+                            <div style="display:flex;flex-direction:column;gap:2px">
+                              <div style="font-size:{{ c.nameFs }}px;font-weight:600;line-height:1.1">{{ c.nome }}</div>
+                              <sc-if value="{{ c.temPapel }}" hint-placeholder-val="{{ false }}"><div style="font-size:{{ c.roleFs }}px;font-weight:400;line-height:1.2;color:#E6E6E6">{{ c.papel }}</div></sc-if>
+                            </div>
+                          </div>
+                        </sc-for>
+                      </div>
+                    </div>
+                  </sc-if>
+                  <sc-if value="{{ m.vid }}" hint-placeholder-val="{{ false }}">
+                    <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:24px;width:{{ S.vW }}px">
+                      <sc-for list="{{ S.vid }}" as="c" hint-placeholder-count="4">
+                        <div style="width:{{ c.w }}px;height:{{ c.total }}px;border-radius:{{ c.r }}px {{ c.r }}px 24px 24px;overflow:hidden;position:relative;background:rgba(255,255,255,0.06);border:2px solid rgba(255,255,255,0.28)">
+                          <div style="position:absolute;left:0;right:0;bottom:0;height:60%;background:radial-gradient(closest-side,rgba(43,130,238,0.6),rgba(43,130,238,0) 100%)"></div>
+                          <div style="position:absolute;left:{{ c.il }}px;bottom:0;width:{{ c.iw }}px;height:{{ c.ih }}px;filter:{{ c.filter }};background-image:url({{ c.foto }});background-repeat:no-repeat;background-size:100% 100%;"></div>
+                          <div style="position:absolute;left:10px;right:10px;top:{{ c.nameTop }}px;display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center">
+                            <div style="font-size:{{ c.nameFs }}px;font-weight:600;line-height:1.05;letter-spacing:0.04em;text-transform:uppercase">{{ c.nome }}</div>
+                            <sc-if value="{{ c.temPapel }}" hint-placeholder-val="{{ false }}"><div style="font-size:{{ c.roleFs }}px;font-weight:500;color:#2B82EE;line-height:1.2">{{ c.papel }}</div></sc-if>
+                          </div>
+                        </div>
+                      </sc-for>
+                    </div>
+                  </sc-if>
+                </div>
+                <sc-if value="{{ f.showChamada }}" hint-placeholder-val="{{ true }}">
+                  <div style="align-self:center;background:#2B82EE;color:#fff;font-size:34px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;padding:16px 44px;border-radius:999px;white-space:nowrap">{{ f.chamada }}</div>
+                </sc-if>
+                <div style="display:flex;flex-direction:column;gap:32px">
+                  <div style="display:flex;justify-content:space-between;gap:40px;align-items:center">
+                    <div style="font-size:170px;line-height:0.85;font-weight:300;letter-spacing:-0.04em">{{ d.dia }}<span style="color:#2B82EE">.</span>{{ d.mes }}</div>
+                    <div style="display:flex;flex-direction:column;gap:8px;border-left:3px solid #2B82EE;padding-left:40px">
+                      <div style="font-size:34px;letter-spacing:0.2em;text-transform:uppercase;font-weight:600;color:#2B82EE">{{ d.semana }}</div>
+                      <div style="font-size:{{ s.horaFs }}px;font-weight:400;line-height:1;white-space:nowrap">{{ d.horario }}</div>
+                    </div>
+                  </div>
+                  <div style="display:grid;grid-template-columns:{{ cols }};gap:24px">
+                    <div style="background:#fff;color:#0D3566;padding:30px 40px;border-radius:28px;display:flex;flex-direction:column;gap:8px">
+                      <div style="font-size:24px;letter-spacing:0.22em;text-transform:uppercase;font-weight:600;color:#2B82EE">Onde</div>
+                      <div style="font-size:{{ s.localFs }}px;font-weight:500;line-height:1.15">{{ f.local }}</div>
+                      <div style="font-size:{{ s.endFs }}px;font-weight:400;line-height:1.3">{{ f.endereco }}</div>
+                    </div>
+                    <sc-if value="{{ f.showInvest }}" hint-placeholder-val="{{ true }}">
+                      <div style="background:#fff;color:#0D3566;padding:30px 36px;border-radius:28px;display:flex;flex-direction:column;gap:8px">
+                        <div style="font-size:24px;letter-spacing:0.22em;text-transform:uppercase;font-weight:600;color:#2B82EE">Ingresso solidário</div>
+                        <div style="font-size:{{ s.investFs }}px;font-weight:500;line-height:1.05">{{ f.investValor }}</div>
+                        <div style="font-size:28px;font-weight:400;line-height:1.3">{{ f.investObs }}</div>
+                      </div>
+                    </sc-if>
+                  </div>
+                </div>
+              </div>
+            </sc-if>
           </div>
         </div>
         <button onClick="{{ baixarStory }}" disabled="{{ busy }}" style="height:52px;border-radius:12px;background:#C8A227;color:#12303F;border:none;font:inherit;font-size:15px;font-weight:700;cursor:pointer" style-hover="background:#B8921B">Baixar PNG do story</button>
@@ -211,60 +353,158 @@
 
       <div style="display:flex;flex-direction:column;gap:16px">
         <div style="display:flex;flex-direction:column;gap:4px">
-          <div style="font-size:11px;font-weight:600;letter-spacing:0.34em;text-transform:uppercase;color:#5C6B79">1080 × 1350</div>
+          <div style="font-size:11px;font-weight:600;letter-spacing:0.34em;text-transform:uppercase;color:#5C6B79">1080 × 1350 · {{ modeloNome }}</div>
           <div style="font-size:18px;font-weight:700">Feed e conversas do WhatsApp</div>
         </div>
         <div style="width:389px;height:486px;overflow:hidden;border-radius:16px;background:#0D3566;box-shadow:0 20px 40px rgba(18,48,63,0.18)">
           <div ref="{{ feedRef }}" style="width:1080px;height:1350px;position:relative;overflow:hidden;background:#0D3566;color:#fff;font-family:'Jost',sans-serif;transform:scale(0.36);transform-origin:0 0">
-            <img src="assets/simbolo-preto.svg" alt="" style="position:absolute;right:-340px;bottom:300px;width:900px;opacity:0.06;filter:brightness(0) invert(1)">
-            <div style="position:absolute;left:100px;right:100px;top:180px;height:640px;border-radius:440px 440px 0 0;overflow:hidden;background:#2B82EE">
-              <sc-if value="{{ f.showPreletores }}" hint-placeholder-val="{{ true }}">
-                <img src="{{ f.fundo }}" alt="" style="position:absolute;left:{{ q.fxA }}px;top:{{ q.fyA }}px;width:{{ q.fw }}px;-webkit-mask-image:linear-gradient(180deg,#000 0%,#000 74%,transparent 98%);mask-image:linear-gradient(180deg,#000 0%,#000 74%,transparent 98%)">
-              </sc-if>
-              <sc-if value="{{ semPreletores }}" hint-placeholder-val="{{ false }}">
-                <img src="assets/simbolo-negativo.svg" alt="" style="position:absolute;left:50%;top:90px;width:240px;transform:translateX(-50%)">
-              </sc-if>
-              <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,53,102,0) 55%,rgba(13,53,102,0.95) 88%)"></div>
-            </div>
-            <sc-if value="{{ temRecorte }}" hint-placeholder-val="{{ true }}">
-              <img src="{{ f.recorte }}" alt="" style="position:absolute;z-index:3;left:{{ q.fx }}px;top:{{ q.fy }}px;width:{{ q.fw }}px;-webkit-mask-image:linear-gradient(180deg,#000 0%,#000 74%,transparent 98%);mask-image:linear-gradient(180deg,#000 0%,#000 74%,transparent 98%)">
-            </sc-if>
-            <div style="position:absolute;left:100px;right:100px;bottom:580px;z-index:4;display:flex;flex-direction:column;align-items:center;gap:18px;text-align:center">
-              <div style="font-size:22px;letter-spacing:0.24em;text-transform:uppercase;font-weight:600;background:#0D3566;color:#fff;padding:12px 28px;border-radius:999px">Imersão de cura e libertação</div>
-              <div style="font-size:84px;font-weight:300;line-height:1;letter-spacing:-0.02em">Venha como você <span style="font-style:italic">está.</span></div>
-            </div>
-            <div style="position:absolute;left:80px;right:80px;top:56px;z-index:4;display:flex;justify-content:space-between;align-items:center">
-              <img src="assets/logo-negativo.svg" alt="Liberta-me" style="height:120px">
-              <sc-if value="{{ f.showParceiro }}" hint-placeholder-val="{{ true }}">
-                <div style="width:{{ pc.qw }}px;height:{{ pc.qh }}px;border-radius:{{ pc.r }};background:{{ pc.bg }};display:flex;align-items:center;justify-content:flex-end"><div style="width:100%;height:100%;background-image:url({{ parceiroSrc }});background-size:contain;background-position:right center;background-repeat:no-repeat"></div></div>
-              </sc-if>
-            </div>
-            <sc-if value="{{ f.showChamada }}" hint-placeholder-val="{{ true }}">
-              <div style="position:absolute;z-index:5;left:50%;top:786px;transform:translateX(-50%);background:#2B82EE;color:#fff;font-size:32px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;padding:16px 40px;border-radius:999px;white-space:nowrap">{{ f.chamada }}</div>
-            </sc-if>
-            <div style="position:absolute;left:100px;right:100px;bottom:64px;display:flex;flex-direction:column;gap:26px">
-              <div style="display:flex;justify-content:space-between;gap:36px;align-items:center">
-                <div style="font-size:150px;line-height:0.85;font-weight:300;letter-spacing:-0.04em">{{ d.dia }}<span style="color:#2B82EE">.</span>{{ d.mes }}</div>
-                <div style="display:flex;flex-direction:column;gap:8px;border-left:3px solid #2B82EE;padding-left:36px">
-                  <div style="font-size:32px;letter-spacing:0.2em;text-transform:uppercase;font-weight:600;color:#2B82EE">{{ d.semana }}</div>
-                  <div style="font-size:{{ q.horaFs }}px;font-weight:400;line-height:1;white-space:nowrap">{{ d.horario }}</div>
-                </div>
+            <img src="assets/simbolo-preto.svg" alt="" style="position:absolute;right:-340px;bottom:300px;width:900px;opacity:0.06;filter:brightness(0) invert(1)"></img>
+
+            <sc-if value="{{ m.arco }}" hint-placeholder-val="{{ true }}">
+              <div style="position:absolute;left:100px;right:100px;top:180px;height:640px;border-radius:440px 440px 0 0;overflow:hidden;background:linear-gradient(180deg,#2B82EE 0%,#1F5FB0 100%)">
+                <sc-if value="{{ semPessoas }}" hint-placeholder-val="{{ false }}">
+                  <img src="assets/simbolo-negativo.svg" alt="" style="position:absolute;left:50%;top:90px;width:240px;transform:translateX(-50%)"></img>
+                </sc-if>
+                <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,53,102,0) 55%,rgba(13,53,102,0.95) 88%)"></div>
               </div>
-              <div style="display:grid;grid-template-columns:{{ cols }};gap:20px">
-                <div style="background:#fff;color:#0D3566;padding:28px 36px;border-radius:24px;display:flex;flex-direction:column;gap:6px">
-                  <div style="font-size:20px;letter-spacing:0.22em;text-transform:uppercase;font-weight:600;color:#2B82EE">Onde</div>
-                  <div style="font-size:{{ q.localFs }}px;font-weight:500;line-height:1.15">{{ f.local }}</div>
-                  <div style="font-size:{{ q.endFs }}px;font-weight:400;line-height:1.3">{{ f.endereco }}</div>
+              <sc-for list="{{ Q.arco }}" as="row" hint-placeholder-count="1">
+                <div style="position:absolute;left:0;right:0;top:{{ row.top }}px;padding-left:{{ row.pl }}px;padding-right:{{ row.pr }}px;z-index:3;display:flex;justify-content:center;pointer-events:none">
+                  <sc-for list="{{ row.items }}" as="p" hint-placeholder-count="3">
+                    <div style="width:{{ p.w }}px;height:{{ p.h }}px;margin-left:{{ p.ml }}px;flex-shrink:0;filter:{{ p.filter }};-webkit-mask-image:linear-gradient(180deg,#000 0%,#000 70%,transparent 100%);mask-image:linear-gradient(180deg,#000 0%,#000 70%,transparent 100%);background-image:url({{ p.foto }});background-repeat:no-repeat;background-size:100% 100%;"></div>
+                  </sc-for>
                 </div>
-                <sc-if value="{{ f.showInvest }}" hint-placeholder-val="{{ true }}">
-                  <div style="background:#fff;color:#0D3566;padding:28px 32px;border-radius:24px;display:flex;flex-direction:column;gap:6px">
-                    <div style="font-size:20px;letter-spacing:0.22em;text-transform:uppercase;font-weight:600;color:#2B82EE">Investimento</div>
-                    <div style="font-size:{{ q.investFs }}px;font-weight:500;line-height:1.05">{{ f.investValor }}</div>
-                    <div style="font-size:24px;font-weight:400;line-height:1.3">{{ f.investObs }}</div>
-                  </div>
+              </sc-for>
+              <div style="position:absolute;left:100px;right:100px;top:600px;height:220px;z-index:3;background:linear-gradient(180deg,rgba(13,53,102,0) 0%,rgba(13,53,102,0.85) 70%,#0D3566 100%);pointer-events:none"></div>
+              <div style="position:absolute;left:100px;right:100px;bottom:580px;z-index:4;display:flex;flex-direction:column;align-items:center;gap:18px;text-align:center">
+                <div style="font-size:22px;letter-spacing:0.24em;text-transform:uppercase;font-weight:600;background:#0D3566;color:#fff;padding:12px 28px;border-radius:999px">Imersão de cura e libertação</div>
+                <div style="font-size:84px;font-weight:300;line-height:1;letter-spacing:-0.02em">Venha como você <span style="font-style:italic">está.</span></div>
+              </div>
+              <div style="position:absolute;left:80px;right:80px;top:56px;z-index:4;display:flex;justify-content:space-between;align-items:center">
+                <img src="assets/logo-negativo.svg" alt="Liberta-me" style="height:120px"></img>
+                <sc-if value="{{ f.showParceiro }}" hint-placeholder-val="{{ true }}">
+                  <div style="width:{{ pc.qw }}px;height:{{ pc.qh }}px;border-radius:{{ pc.r }};background:{{ pc.bg }};display:flex;align-items:center;justify-content:flex-end"><div style="width:100%;height:100%;background-image:url({{ parceiroSrc }});background-size:contain;background-position:right center;background-repeat:no-repeat"></div></div>
                 </sc-if>
               </div>
-            </div>
+              <sc-if value="{{ f.showChamada }}" hint-placeholder-val="{{ true }}">
+                <div style="position:absolute;z-index:5;left:50%;top:786px;transform:translateX(-50%);background:#2B82EE;color:#fff;font-size:32px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;padding:16px 40px;border-radius:999px;white-space:nowrap">{{ f.chamada }}</div>
+              </sc-if>
+              <div style="position:absolute;left:100px;right:100px;bottom:64px;display:flex;flex-direction:column;gap:26px">
+                <div style="display:flex;justify-content:space-between;gap:36px;align-items:center">
+                  <div style="font-size:150px;line-height:0.85;font-weight:300;letter-spacing:-0.04em">{{ d.dia }}<span style="color:#2B82EE">.</span>{{ d.mes }}</div>
+                  <div style="display:flex;flex-direction:column;gap:8px;border-left:3px solid #2B82EE;padding-left:36px">
+                    <div style="font-size:32px;letter-spacing:0.2em;text-transform:uppercase;font-weight:600;color:#2B82EE">{{ d.semana }}</div>
+                    <div style="font-size:{{ q.horaFs }}px;font-weight:400;line-height:1;white-space:nowrap">{{ d.horario }}</div>
+                  </div>
+                </div>
+                <div style="display:grid;grid-template-columns:{{ cols }};gap:20px">
+                  <div style="background:#fff;color:#0D3566;padding:28px 36px;border-radius:24px;display:flex;flex-direction:column;gap:6px">
+                    <div style="font-size:20px;letter-spacing:0.22em;text-transform:uppercase;font-weight:600;color:#2B82EE">Onde</div>
+                    <div style="font-size:{{ q.localFs }}px;font-weight:500;line-height:1.15">{{ f.local }}</div>
+                    <div style="font-size:{{ q.endFs }}px;font-weight:400;line-height:1.3">{{ f.endereco }}</div>
+                  </div>
+                  <sc-if value="{{ f.showInvest }}" hint-placeholder-val="{{ true }}">
+                    <div style="background:#fff;color:#0D3566;padding:28px 32px;border-radius:24px;display:flex;flex-direction:column;gap:6px">
+                      <div style="font-size:20px;letter-spacing:0.22em;text-transform:uppercase;font-weight:600;color:#2B82EE">Ingresso solidário</div>
+                      <div style="font-size:{{ q.investFs }}px;font-weight:500;line-height:1.05">{{ f.investValor }}</div>
+                      <div style="font-size:24px;font-weight:400;line-height:1.3">{{ f.investObs }}</div>
+                    </div>
+                  </sc-if>
+                </div>
+              </div>
+            </sc-if>
+
+            <sc-if value="{{ m.flex }}" hint-placeholder-val="{{ false }}">
+              <div style="position:absolute;inset:0;padding:48px 80px 56px;display:flex;flex-direction:column;gap:18px">
+                <div style="display:flex;justify-content:space-between;align-items:center">
+                  <img src="assets/logo-negativo.svg" alt="Liberta-me" style="height:104px"></img>
+                  <sc-if value="{{ f.showParceiro }}" hint-placeholder-val="{{ true }}">
+                    <div style="width:{{ pc.qw }}px;height:{{ pc.qh }}px;border-radius:{{ pc.r }};background:{{ pc.bg }};display:flex;align-items:center;justify-content:flex-end"><div style="width:100%;height:100%;background-image:url({{ parceiroSrc }});background-size:contain;background-position:right center;background-repeat:no-repeat"></div></div>
+                  </sc-if>
+                </div>
+                <div style="display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center">
+                  <div style="font-size:20px;letter-spacing:0.24em;text-transform:uppercase;font-weight:600;border:2px solid #2B82EE;padding:6px 22px;border-radius:999px">Imersão de cura e libertação</div>
+                  <div style="font-size:54px;font-weight:300;line-height:1;letter-spacing:-0.02em">Venha como você <span style="font-style:italic">está.</span></div>
+                </div>
+                <div ref="{{ zoneQRef }}" style="flex:1;min-height:0;display:flex;flex-direction:column;align-items:center;justify-content:center">
+                  <sc-if value="{{ semPessoas }}" hint-placeholder-val="{{ false }}">
+                    <img src="assets/simbolo-negativo.svg" alt="" style="width:220px"></img>
+                  </sc-if>
+                  <sc-if value="{{ m.cards }}" hint-placeholder-val="{{ false }}">
+                    <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:16px;width:{{ Q.cW }}px">
+                      <sc-for list="{{ Q.cards }}" as="c" hint-placeholder-count="4">
+                        <div style="width:{{ c.w }}px;border-radius:18px;overflow:hidden;background:#fff;display:flex;flex-direction:column">
+                          <div style="height:{{ c.h }}px;background:linear-gradient(180deg,#0D3566 0%,#2B82EE 100%);overflow:hidden">
+                            <div style="width:100%;height:100%;filter:{{ c.filter }};background-image:url({{ c.foto }});background-repeat:no-repeat;background-size:cover;background-position:50% 22%;"></div>
+                          </div>
+                          <div style="padding:{{ c.pad }}px 8px;display:flex;flex-direction:column;align-items:center;gap:2px;text-align:center;color:#0D3566;border-bottom:6px solid #2B82EE">
+                            <div style="font-size:{{ c.nameFs }}px;font-weight:600;line-height:1.1">{{ c.nome }}</div>
+                            <sc-if value="{{ c.temPapel }}" hint-placeholder-val="{{ false }}"><div style="font-size:{{ c.roleFs }}px;font-weight:400;line-height:1.2">{{ c.papel }}</div></sc-if>
+                          </div>
+                        </div>
+                      </sc-for>
+                    </div>
+                  </sc-if>
+                  <sc-if value="{{ m.ret }}" hint-placeholder-val="{{ false }}">
+                    <div style="width:920px;border-radius:{{ Q.retR }}px {{ Q.retR }}px 28px 28px;background:linear-gradient(180deg,rgba(43,130,238,0.45) 0%,rgba(43,130,238,0.12) 100%);border:2px solid rgba(255,255,255,0.22);padding:{{ Q.retPad }}px 28px 28px;display:flex;flex-direction:column;align-items:center;gap:18px">
+                      <div style="display:flex;align-items:center;gap:14px;font-size:18px;letter-spacing:0.26em;text-transform:uppercase;font-weight:600"><div style="width:40px;height:2px;background:#fff"></div><div>Preletores</div><div style="width:40px;height:2px;background:#fff"></div></div>
+                      <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:18px 20px;width:{{ Q.rW }}px">
+                        <sc-for list="{{ Q.ret }}" as="c" hint-placeholder-count="4">
+                          <div style="width:{{ c.d }}px;display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center">
+                            <div style="width:{{ c.d }}px;height:{{ c.d }}px;border-radius:50%;border:5px solid #fff;overflow:hidden;background:linear-gradient(180deg,#0D3566 0%,#2B82EE 100%);position:relative">
+                              <div style="position:absolute;left:{{ c.il }}px;top:{{ c.it }}px;width:{{ c.iw }}px;height:{{ c.ih }}px;filter:{{ c.filter }};background-image:url({{ c.foto }});background-repeat:no-repeat;background-size:100% 100%;"></div>
+                            </div>
+                            <div style="display:flex;flex-direction:column;gap:2px">
+                              <div style="font-size:{{ c.nameFs }}px;font-weight:600;line-height:1.1">{{ c.nome }}</div>
+                              <sc-if value="{{ c.temPapel }}" hint-placeholder-val="{{ false }}"><div style="font-size:{{ c.roleFs }}px;font-weight:400;line-height:1.2;color:#E6E6E6">{{ c.papel }}</div></sc-if>
+                            </div>
+                          </div>
+                        </sc-for>
+                      </div>
+                    </div>
+                  </sc-if>
+                  <sc-if value="{{ m.vid }}" hint-placeholder-val="{{ false }}">
+                    <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:16px;width:{{ Q.vW }}px">
+                      <sc-for list="{{ Q.vid }}" as="c" hint-placeholder-count="4">
+                        <div style="width:{{ c.w }}px;height:{{ c.total }}px;border-radius:{{ c.r }}px {{ c.r }}px 20px 20px;overflow:hidden;position:relative;background:rgba(255,255,255,0.06);border:2px solid rgba(255,255,255,0.28)">
+                          <div style="position:absolute;left:0;right:0;bottom:0;height:60%;background:radial-gradient(closest-side,rgba(43,130,238,0.6),rgba(43,130,238,0) 100%)"></div>
+                          <div style="position:absolute;left:{{ c.il }}px;bottom:0;width:{{ c.iw }}px;height:{{ c.ih }}px;filter:{{ c.filter }};background-image:url({{ c.foto }});background-repeat:no-repeat;background-size:100% 100%;"></div>
+                          <div style="position:absolute;left:8px;right:8px;top:{{ c.nameTop }}px;display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center">
+                            <div style="font-size:{{ c.nameFs }}px;font-weight:600;line-height:1.05;letter-spacing:0.04em;text-transform:uppercase">{{ c.nome }}</div>
+                            <sc-if value="{{ c.temPapel }}" hint-placeholder-val="{{ false }}"><div style="font-size:{{ c.roleFs }}px;font-weight:500;color:#2B82EE;line-height:1.2">{{ c.papel }}</div></sc-if>
+                          </div>
+                        </div>
+                      </sc-for>
+                    </div>
+                  </sc-if>
+                </div>
+                <sc-if value="{{ f.showChamada }}" hint-placeholder-val="{{ true }}">
+                  <div style="align-self:center;background:#2B82EE;color:#fff;font-size:26px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;padding:12px 34px;border-radius:999px;white-space:nowrap">{{ f.chamada }}</div>
+                </sc-if>
+                <div style="display:flex;flex-direction:column;gap:16px">
+                  <div style="display:flex;justify-content:space-between;gap:36px;align-items:center">
+                    <div style="font-size:112px;line-height:0.85;font-weight:300;letter-spacing:-0.04em">{{ d.dia }}<span style="color:#2B82EE">.</span>{{ d.mes }}</div>
+                    <div style="display:flex;flex-direction:column;gap:6px;border-left:3px solid #2B82EE;padding-left:32px">
+                      <div style="font-size:28px;letter-spacing:0.2em;text-transform:uppercase;font-weight:600;color:#2B82EE">{{ d.semana }}</div>
+                      <div style="font-size:{{ q.horaFs }}px;font-weight:400;line-height:1;white-space:nowrap">{{ d.horario }}</div>
+                    </div>
+                  </div>
+                  <div style="display:grid;grid-template-columns:{{ cols }};gap:18px">
+                    <div style="background:#fff;color:#0D3566;padding:18px 28px;border-radius:22px;display:flex;flex-direction:column;gap:4px">
+                      <div style="font-size:18px;letter-spacing:0.22em;text-transform:uppercase;font-weight:600;color:#2B82EE">Onde</div>
+                      <div style="font-size:{{ q.localFs }}px;font-weight:500;line-height:1.15">{{ f.local }}</div>
+                      <div style="font-size:{{ q.endFs }}px;font-weight:400;line-height:1.3">{{ f.endereco }}</div>
+                    </div>
+                    <sc-if value="{{ f.showInvest }}" hint-placeholder-val="{{ true }}">
+                      <div style="background:#fff;color:#0D3566;padding:18px 26px;border-radius:22px;display:flex;flex-direction:column;gap:4px">
+                        <div style="font-size:18px;letter-spacing:0.22em;text-transform:uppercase;font-weight:600;color:#2B82EE">Ingresso solidário</div>
+                        <div style="font-size:{{ q.investFs }}px;font-weight:500;line-height:1.05">{{ f.investValor }}</div>
+                        <div style="font-size:22px;font-weight:400;line-height:1.3">{{ f.investObs }}</div>
+                      </div>
+                    </sc-if>
+                  </div>
+                </div>
+              </div>
+            </sc-if>
           </div>
         </div>
         <button onClick="{{ baixarFeed }}" disabled="{{ busy }}" style="height:52px;border-radius:12px;background:#C8A227;color:#12303F;border:none;font:inherit;font-size:15px;font-weight:700;cursor:pointer" style-hover="background:#B8921B">Baixar PNG do feed</button>
@@ -274,34 +514,98 @@
   </div>
 </div>
 </x-dc>
+<!-- Modo Vídeo (Vereda): prévia e exportação do convite em vídeo -->
+<section style="background:#E9EEF2;padding:0 0 48px">
+  <div style="height:28px;position:relative"><div style="position:absolute;inset:0;background:#12303F;clip-path:polygon(0 0,100% 0,100% 0,0 100%)"></div><div style="position:absolute;right:0;top:0;width:26%;height:100%;background:#C8A227;clip-path:polygon(0 100%,100% 0,100% 100%)"></div></div>
+  <div id="liberta-motion"></div>
+</section>
+<script type="module" src="./motion/motion.js"></script>
+
 <script type="text/x-dc" data-dc-script>
-const KEY = 'liberta-gerador-v5';
+const KEY = 'liberta-gerador-v6';
+const MAX = 8;
+const BANCO_PADRAO = [
+  { id: 'pr-gilnei-peixoto', nome: 'Pr. Gilnei Peixoto', papel: '', foto: 'fotos/pr-gilnei-peixoto.png' },
+  { id: 'pr-joao-de-souza', nome: 'Pr. João de Souza', papel: '', foto: 'fotos/pr-joao-de-souza.png' },
+  { id: 'pr-loremar-guimaraes', nome: 'Pr. Loremar Guimarães', papel: '', foto: 'fotos/pr-loremar-guimaraes.png' },
+  { id: 'pra-katia-peixoto', nome: 'Pra. Kátia Peixoto', papel: '', foto: 'fotos/pra-katia-peixoto.png' },
+  { id: 'pra-rosane-beatriz', nome: 'Pra. Rosane Beatriz', papel: '', foto: 'fotos/pra-rosane-beatriz.png' },
+  { id: 'terceli-knevitz', nome: 'Terceli Knevitz', papel: '', foto: 'fotos/terceli-knevitz.png' },
+];
 const DEFAULTS = {
+  modelo: 'arco',
   data: '2026-11-28', inicio: '14:00', fim: '21:00',
   local: 'INC Igreja Nascidos para Cristo', endereco: 'Av. General Flores da Cunha, 47 · Cachoeirinha',
-  showInvest: true, investValor: 'R$ 50', investObs: 'por pessoa',
+  showInvest: true, investValor: 'Materiais', investObs: 'de higiene pessoal',
   showChamada: true, chamada: 'Último encontro do ano',
-  showParceiro: true, parceiro: null,
-  showPreletores: true, fundo: 'assets/preletores-fundo.png', recorte: 'assets/preletores-recorte.png',
-  fx: 20, fy: 250, fw: 1040, ls: 100,
+  showParceiro: true, parceiro: null, ls: 100,
+  sel: ['pr-gilnei-peixoto', 'pra-katia-peixoto', 'pr-joao-de-souza', 'pra-rosane-beatriz'],
+  trat: 'Natural', ajY: 0, ajS: 100,
+  novoNome: '', novoPapel: '',
 };
-const TEXT_KEYS = ['data','inicio','fim','local','endereco','showInvest','investValor','investObs','showChamada','chamada','showParceiro','showPreletores','fx','fy','fw','ls'];
+const SAVE_KEYS = ['modelo','data','inicio','fim','local','endereco','showInvest','investValor','investObs','showChamada','chamada','showParceiro','ls','sel','trat','ajY','ajS'];
 const DIAS = ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado'];
+// Ingresso solidário: opções prontas (o destaque vai grande no card, o complemento embaixo)
+const INGRESSOS = [
+  { label: '1 kg de alimento não perecível', valor: '1 kg', obs: 'de alimento não perecível' },
+  { label: 'Materiais de higiene', valor: 'Materiais', obs: 'de higiene pessoal' },
+];
+const MODELOS = [
+  { key: 'arco', label: 'Arco', desc: 'Pessoas juntas no arco' },
+  { key: 'cards', label: 'Cartões', desc: 'Foto e nome em cartões' },
+  { key: 'ret', label: 'Retratos', desc: 'Círculos dentro do arco' },
+  { key: 'vid', label: 'Arcos de vidro', desc: 'Cada pessoa no seu arco' },
+];
+const FILTROS = {
+  Natural: 'none',
+  Azul: 'grayscale(1) sepia(1) hue-rotate(175deg) saturate(2.2) brightness(0.95)',
+  'P&B': 'grayscale(1) contrast(1.05)',
+};
 
 class Component extends DCLogic {
   storyRef = React.createRef();
   feedRef = React.createRef();
+  zoneSRef = React.createRef();
+  zoneQRef = React.createRef();
+  medir() {
+    const u = {};
+    const a = this.zoneSRef.current, b = this.zoneQRef.current;
+    if (a) { const v = a.clientHeight; if (v > 50 && Math.abs(v - (this.state.zS || 0)) > 2) u.zS = v; }
+    if (b) { const v = b.clientHeight; if (v > 50 && Math.abs(v - (this.state.zQ || 0)) > 2) u.zQ = v; }
+    if (Object.keys(u).length) this.setState(u);
+  }
+  componentDidUpdate() { this.medir(); }
   state = this.initial();
 
   initial() {
     let saved = {};
     try { saved = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch (e) {}
-    return { ...DEFAULTS, ...saved, busy: false, status: 'Tudo pronto pra gerar' };
+    return { ...DEFAULTS, ...saved, banco: BANCO_PADRAO.map(p => ({ ...p, foto: 'preletores/' + p.foto })), extras: [], busy: false, status: 'Tudo pronto pra gerar' };
+  }
+  async componentDidMount() {
+    this.medir();
+    try {
+      const r = await fetch('preletores/preletores.json', { cache: 'no-store' });
+      if (!r.ok) return;
+      const lista = await r.json();
+      const banco = lista.filter(p => p.ativo !== false).map(p => ({ id: p.id, nome: p.nome, papel: p.papel || '', foto: 'preletores/' + p.foto }));
+      if (banco.length) this.setState({ banco });
+    } catch (e) {}
   }
   save() {
-    try { const o = {}; TEXT_KEYS.forEach(k => o[k] = this.state[k]); localStorage.setItem(KEY, JSON.stringify(o)); } catch (e) {}
+    try { const o = {}; SAVE_KEYS.forEach(k => o[k] = this.state[k]); o.sel = (this.state.sel || []).filter(id => !String(id).startsWith('x-')); localStorage.setItem(KEY, JSON.stringify(o)); } catch (e) {}
   }
   set(k, v) { this.setState({ [k]: v }, () => this.save()); }
+
+  toggle(id) {
+    const sel = this.state.sel || [];
+    if (sel.includes(id)) { this.setState({ sel: sel.filter(x => x !== id) }, () => this.save()); return; }
+    if (sel.length >= MAX) { this.setState({ status: `Máximo de ${MAX} pessoas por convite. Desmarca alguém antes.` }); return; }
+    this.setState({ sel: [...sel, id] }, () => this.save());
+  }
+  remover(id) {
+    this.setState(s => ({ extras: s.extras.filter(p => p.id !== id), sel: s.sel.filter(x => x !== id) }), () => this.save());
+  }
 
   loadImage(file, maxW) {
     return new Promise((res, rej) => {
@@ -318,6 +622,59 @@ class Component extends DCLogic {
     });
   }
 
+  enquadrar(blob) {
+    return new Promise(res => {
+      const img = new Image();
+      img.onload = () => {
+        const c = document.createElement('canvas'); c.width = img.width; c.height = img.height;
+        const x = c.getContext('2d'); x.drawImage(img, 0, 0);
+        const d = x.getImageData(0, 0, c.width, c.height).data;
+        let top = -1, l = c.width, r = 0;
+        for (let yy = 0; yy < c.height; yy += 2) for (let xx = 0; xx < c.width; xx += 2) {
+          if (d[(yy * c.width + xx) * 4 + 3] > 40) { if (top < 0) top = yy; if (xx < l) l = xx; if (xx > r) r = xx; }
+        }
+        if (top < 0) { res(URL.createObjectURL(blob)); return; }
+        let sl = c.width, sr = 0;
+        for (let yy = top; yy < Math.min(c.height, top + c.height * 0.25); yy += 2) for (let xx = 0; xx < c.width; xx += 2) {
+          if (d[(yy * c.width + xx) * 4 + 3] > 40) { if (xx < sl) sl = xx; if (xx > sr) sr = xx; }
+        }
+        const headW = Math.max(40, sr - sl), cx = (sl + sr) / 2;
+        const W = headW / 0.5, H = W * 4 / 3;
+        const o = document.createElement('canvas'); o.width = 900; o.height = 1200;
+        const k = 900 / W;
+        o.getContext('2d').drawImage(img, (cx - W / 2), top - H * 0.08, W, H, 0, 0, 900, 1200);
+        o.toBlob(b => res(URL.createObjectURL(b)), 'image/png');
+      };
+      img.src = URL.createObjectURL(blob);
+    });
+  }
+
+  async novoFile(file) {
+    if (!file || !/^image\//.test(file.type)) { this.setState({ status: 'Esse arquivo não é imagem. Manda um PNG ou JPG.' }); return; }
+    if ((this.state.sel || []).length >= MAX) { this.setState({ status: `Máximo de ${MAX} pessoas por convite. Desmarca alguém antes.` }); return; }
+    const nome = (this.state.novoNome || '').trim() || 'Novo preletor';
+    const papel = (this.state.novoPapel || '').trim();
+    const { url, blob } = await this.loadImage(file, 1400);
+    this.setState({ busy: true, status: 'Tirando o fundo da foto. Na primeira vez leva uns minutinho, aguenta aí.' });
+    let foto = url;
+    try {
+      const m = await import('https://cdn.jsdelivr.net/npm/@imgly/background-removal@1.5.5/+esm');
+      const out = await m.removeBackground(blob, {
+        publicPath: 'https://staticimgly.com/@imgly/background-removal-data/1.5.5/dist/',
+        model: 'isnet_quint8', output: { format: 'image/png' },
+      });
+      foto = await this.enquadrar(out);
+    } catch (err) {
+      console.warn(err);
+    }
+    const id = 'x-' + Date.now();
+    this.setState(s => ({
+      extras: [...s.extras, { id, nome, papel, foto, extra: true }],
+      sel: [...s.sel, id], novoNome: '', novoPapel: '', busy: false,
+      status: foto === url ? 'Não deu pra tirar o fundo. A foto entrou como veio.' : `${nome} adicionado ao convite`,
+    }), () => this.save());
+  }
+
   async onParceiro(e) {
     const file = e.target.files && e.target.files[0]; if (!file) return;
     e.target.value = '';
@@ -327,29 +684,6 @@ class Component extends DCLogic {
     if (!file || !/^image\//.test(file.type)) { this.setState({ status: 'Esse arquivo não é imagem. Manda um PNG ou JPG.' }); return; }
     const { url } = await this.loadImage(file, 400);
     this.setState({ parceiro: url, showParceiro: true, status: 'Logo da parceira no lugar' }, () => this.save());
-  }
-
-  async onFoto(e) {
-    const file = e.target.files && e.target.files[0]; if (!file) return;
-    e.target.value = '';
-    return this.fotoFile(file);
-  }
-  async fotoFile(file) {
-    if (!file || !/^image\//.test(file.type)) { this.setState({ status: 'Esse arquivo não é imagem. Manda um PNG ou JPG.' }); return; }
-    const { url, blob } = await this.loadImage(file, 1600);
-    this.setState({ fundo: url, recorte: null, showPreletores: true, busy: true, status: 'Separando as pessoas do fundo. Na primeira vez leva uns minutinho, aguenta aí.' });
-    try {
-      const m = await import('https://cdn.jsdelivr.net/npm/@imgly/background-removal@1.5.5/+esm');
-      const out = await m.removeBackground(blob, {
-        publicPath: 'https://staticimgly.com/@imgly/background-removal-data/1.5.5/dist/',
-        model: 'isnet_quint8', output: { format: 'image/png' },
-      });
-      const rec = URL.createObjectURL(out);
-      this.setState({ recorte: rec, busy: false, status: 'Recorte pronto. Ajusta a posição se precisar.' });
-    } catch (err) {
-      console.warn(err);
-      this.setState({ busy: false, status: 'O recorte automático falhou. A foto fica só dentro do arco. Se quiser, manda ela já recortada.' });
-    }
   }
 
   async fontCSS() {
@@ -378,7 +712,7 @@ class Component extends DCLogic {
       await window.htmlToImage.toPng(node, opts);
       const url = await window.htmlToImage.toPng(node, opts);
       const a = document.createElement('a');
-      a.href = url; a.download = `liberta-me-${tipo}-${this.state.data || 'evento'}.png`;
+      a.href = url; a.download = `liberta-me-${this.state.modelo}-${tipo}-${this.state.data || 'evento'}.png`;
       document.body.appendChild(a); a.click(); a.remove();
       this.setState({ busy: false, status: `Imagem do ${tipo} baixada` });
     } catch (err) {
@@ -389,7 +723,96 @@ class Component extends DCLogic {
 
   resetar() {
     try { localStorage.removeItem(KEY); } catch (e) {}
-    this.setState({ ...DEFAULTS, status: 'Exemplo restaurado' });
+    this.setState({ ...DEFAULTS, extras: [], status: 'Exemplo restaurado' });
+  }
+
+  grid(n, st) { const cols = n <= 3 ? n : n === 4 ? (st ? 2 : 4) : n <= 6 ? 3 : 4; return { cols, rows: Math.ceil(n / cols) }; }
+
+  arcoRows(lista, filter, cfg, ajY, ajS) {
+    const n = lista.length; if (!n) return [];
+    const SP = 0.7;
+    const mkRow = (items, W, chin, pl, pr = 0) => {
+      const H = Math.round(W * 4 / 3);
+      return { top: Math.round(chin + ajY - H * 0.55), pl, pr, items: items.map((p, i) => ({ foto: p.foto, filter, w: W, h: H, ml: i ? -Math.round(W * (1 - SP)) : 0 })) };
+    };
+    if (n <= 4) {
+      const W = Math.round(Math.min(cfg.cap, cfg.avail / (1 + SP * (n - 1))) * ajS);
+      return [mkRow(lista, W, cfg.chin, 0)];
+    }
+    const k1 = Math.floor(n / 2), k2 = n - k1;
+    const stagger = k1 === k2;
+    const byW = cfg.avail / (1 + SP * (k2 - 1) + (stagger ? SP / 2 : 0));
+    const byH = (cfg.chin - cfg.headTop) / (0.95 * 4 / 3);
+    const W = Math.round(Math.min(cfg.cap, byW, byH) * ajS);
+    const H = W * 4 / 3;
+    const backChin = cfg.chin - H * 0.49;
+    return [
+      mkRow(lista.slice(0, k1), W, backChin, stagger ? Math.round(W * SP / 2) : 0),
+      mkRow(lista.slice(k1), W, cfg.chin, 0, stagger ? Math.round(W * SP / 2) : 0),
+    ];
+  }
+
+  zonas(lista, filter, fmt, Hz) {
+    const st = fmt === 'S';
+    const n = lista.length;
+    if (!n) return { cards: [], ret: [], vid: [], retPad: 0, retR: st ? 420 : 460, cW: 0, rW: 0, vW: 0 };
+    const papel = lista.some(p => p.papel);
+    const base = p => ({ foto: p.foto, nome: p.nome, papel: p.papel, temPapel: !!p.papel, filter });
+    const W = st ? 840 : 920;
+    const best = (fn, maxC = 4) => { let b = null; for (let c = 1; c <= Math.min(n, maxC); c++) { const v = fn(c, Math.ceil(n / c)); if (v && (!b || v.score > b.score)) b = v; } return b; };
+    const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+
+    const cg = st ? 20 : 16;
+    const plateOf = w => { const nameFs = Math.round(clamp(w * 0.105, st ? 20 : 16, st ? 30 : 24)); const roleFs = Math.round(nameFs * 0.72); const pad = Math.round(nameFs * 0.55); return { nameFs, roleFs, pad, plate: nameFs * 1.12 * 2 + pad * 2 + 7 + (papel ? roleFs * 1.25 : 0) }; };
+    const C = best((c, rows) => {
+      let w = Math.min(st ? 380 : 320, (W - cg * (c - 1)) / c);
+      const row = (Hz - cg * (rows - 1)) / rows;
+      let P = plateOf(w);
+      let ph = Math.min(w * 4 / 3, row - P.plate);
+      if (ph < w * 0.8) { w = (row - P.plate) / 0.8; P = plateOf(w); ph = row - P.plate; w = Math.min(w, ph / 0.8); }
+      if (w < 40) return null;
+      return { c, w: Math.floor(w), h: Math.floor(ph), ...P, score: w * ph };
+    });
+    const cards = lista.map(p => ({ ...base(p), w: C.w, h: C.h, nameFs: C.nameFs, roleFs: C.roleFs, pad: C.pad }));
+
+    const gx = st ? 24 : 20, gy = st ? 32 : 18, lab = st ? 58 : 42, padB = st ? 40 : 28;
+    const rInner = W - 2 * (st ? 36 : 28) - 4;
+    const R = best((c, rows) => {
+      const padT = rows === 1 ? (st ? 100 : 56) : (st ? 72 : 40);
+      const dw = (rInner - gx * (c - 1)) / c;
+      const nameFs = Math.round(clamp(dw * 0.12, st ? 20 : 15, st ? 28 : 22));
+      const roleFs = Math.round(nameFs * 0.72);
+      const extra = (st ? 14 : 10) + nameFs * 1.1 * 2 + (papel ? roleFs * 1.25 : 0);
+      const dh = (Hz - padT - lab - padB - gy * (rows - 1)) / rows - extra - 4;
+      const d = Math.floor(Math.min(dw, dh, st ? 320 : 240));
+      if (d < 40) return null;
+      return { c, rows, d, padT, nameFs: Math.round(clamp(d * 0.12, st ? 20 : 15, st ? 28 : 22)), roleFs, score: d };
+    }, st ? 4 : 6);
+    const d = R.d;
+    const ret = lista.map(p => ({ ...base(p), d, iw: Math.round(d * 1.04), ih: Math.round(d * 1.39), il: -Math.round(d * 0.02), it: Math.round(d * 0.02), nameFs: R.nameFs, roleFs: R.roleFs }));
+
+    const vg = st ? 24 : 16;
+    const V = best((c, rows) => {
+      let w = Math.min(st ? 340 : 280, (W - vg * (c - 1)) / c);
+      const row = (Hz - vg * (rows - 1)) / rows;
+      let total = Math.min(w * 2.35, row, st ? 700 : 470);
+      if (total < w * 1.3) w = total / 1.3;
+      if (w < 40) return null;
+      return { c, w: Math.floor(w), total: Math.floor(total), score: w * total };
+    }, st ? 4 : 6);
+    const vw = V.w, total = V.total;
+    const vNameFs = Math.round(clamp(vw * 0.1, st ? 18 : 14, st ? 28 : 22)), vRoleFs = Math.round(vNameFs * 0.72);
+    const nameTop = Math.round(vw * 0.24);
+    const nameArea = Math.max(Math.round(total * 0.26), nameTop + Math.round(vNameFs * 1.05 * 2) + 8 + (papel ? Math.round(vRoleFs * 1.3) : 0));
+    let ih = total - nameArea, iw = Math.round(ih * 0.75);
+    if (iw > vw * 1.05) { iw = Math.round(vw * 1.05); ih = Math.round(iw / 0.75); }
+    const vid = lista.map(p => ({ ...base(p), w: vw, total, r: Math.round(vw / 2), ih, iw, il: Math.round((vw - 4 - iw) / 2), nameTop, nameFs: vNameFs, roleFs: vRoleFs }));
+
+    return {
+      cards, cW: C.c * C.w + cg * (C.c - 1),
+      ret, rW: R.c * d + gx * (R.c - 1), retPad: R.padT, retR: R.rows === 1 ? (st ? 420 : 460) : (st ? 260 : 220),
+      vid, vW: V.c * vw + vg * (V.c - 1),
+    };
   }
 
   renderVals() {
@@ -400,50 +823,69 @@ class Component extends DCLogic {
     const horario = f.fim ? `${hr(f.inicio)} às ${hr(f.fim)}` : hr(f.inicio);
     const L = (f.local || '').length, E = (f.endereco || '').length, H = horario.length, I = (f.investValor || '').length;
     const inv = f.showInvest;
-    const k = 0.92;
+
+    const todos = [...(f.banco || []), ...(f.extras || [])];
+    const sel = (f.sel || []).filter(id => todos.some(p => p.id === id));
+    const lista = sel.map(id => todos.find(p => p.id === id));
+    const filter = FILTROS[f.trat] || 'none';
+    const ajY = f.ajY || 0, ajS = (f.ajS || 100) / 100;
 
     const on = {};
-    ['data','inicio','fim','local','endereco','investValor','investObs','chamada'].forEach(key => on[key] = e => this.set(key, e.target.value));
-    ['showInvest','showChamada','showParceiro','showPreletores'].forEach(key => on[key] = e => this.set(key, e.target.checked));
-    ['fx','fy','fw','ls'].forEach(key => on[key] = e => this.set(key, +e.target.value));
+    ['data','inicio','fim','local','endereco','investValor','investObs','chamada','novoNome','novoPapel'].forEach(key => on[key] = e => this.set(key, e.target.value));
+    ['showInvest','showChamada','showParceiro'].forEach(key => on[key] = e => this.set(key, e.target.checked));
+    ['ls','ajY','ajS'].forEach(key => on[key] = e => this.set(key, +e.target.value));
     on.parceiroFile = e => this.onParceiro(e);
-    on.fotoFile = e => this.onFoto(e);
+    on.novoFile = e => { const file = e.target.files && e.target.files[0]; e.target.value = ''; if (file) this.novoFile(file); };
+
+    const zS = this.zonas(lista, filter, 'S', f.zS || 800);
+    const zQ = this.zonas(lista, filter, 'Q', f.zQ || 470);
+    const mk = f.modelo || 'arco';
 
     return {
       f, on, status: f.status, busy: f.busy,
-      storyRef: this.storyRef, feedRef: this.feedRef,
+      storyRef: this.storyRef, feedRef: this.feedRef, zoneSRef: this.zoneSRef, zoneQRef: this.zoneQRef,
+      m: { arco: mk === 'arco', flex: mk !== 'arco', cards: mk === 'cards', ret: mk === 'ret', vid: mk === 'vid' },
+      modeloNome: (MODELOS.find(x => x.key === mk) || MODELOS[0]).label,
+      ingressos: INGRESSOS.map(x => { const ativo = f.investValor === x.valor && f.investObs === x.obs; return { ...x, pick: () => this.setState({ investValor: x.valor, investObs: x.obs, showInvest: true }, () => this.save()), bg: ativo ? '#12303F' : '#fff', fg: ativo ? '#fff' : '#12303F' }; }),
+      modelos: MODELOS.map(x => ({ ...x, pick: () => this.set('modelo', x.key), bg: mk === x.key ? '#12303F' : '#fff', fg: mk === x.key ? '#fff' : '#12303F' })),
+      tratamentos: Object.keys(FILTROS).map(label => ({ label, pick: () => this.set('trat', label), bg: f.trat === label ? '#12303F' : '#fff', fg: f.trat === label ? '#fff' : '#12303F' })),
+      pessoas: todos.map(p => {
+        const i = sel.indexOf(p.id);
+        return { ...p, extra: !!p.extra, ordem: i >= 0 ? String(i + 1) : '',
+          border: i >= 0 ? '#12303F' : '#E9EEF2', bg: i >= 0 ? '#E9EEF2' : '#fff', badgeBg: i >= 0 ? '#C8A227' : 'transparent',
+          toggle: () => this.toggle(p.id), remover: () => this.remover(p.id) };
+      }),
+      contagem: `${lista.length} de ${MAX}`,
+      semPessoas: lista.length === 0,
+      S: { ...zS, arco: this.arcoRows(lista, filter, { avail: 1000, cap: 600, chin: 835, headTop: 220 }, ajY, ajS) },
+      Q: { ...zQ, arco: this.arcoRows(lista, filter, { avail: 880, cap: 420, chin: 565, headTop: 110 }, Math.round(ajY * 0.67), ajS) },
       temParceiro: f.showParceiro && !!f.parceiro,
       pc: f.parceiro ? { sw: Math.round(260 * (f.ls ?? 100) / 100), sh: Math.round(150 * (f.ls ?? 100) / 100), qw: Math.round(210 * (f.ls ?? 100) / 100), qh: Math.round(120 * (f.ls ?? 100) / 100), r: '0', bg: 'transparent' } : { sw: 130, sh: 130, qw: 104, qh: 104, r: '50%', bg: '#fff' },
       parceiroSrc: f.parceiro || 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==',
       parceiroBtn: f.parceiro ? 'Trocar logo' : 'Enviar logo',
-      temRecorte: f.showPreletores && !!f.recorte,
-      semPreletores: !f.showPreletores,
       cols: inv ? 'minmax(0,1.55fr) minmax(0,1fr)' : 'minmax(0,1fr)',
       d: { dia: dd || '00', mes: m || '00', semana: dt ? DIAS[dt.getDay()] : '', horario },
       s: {
-        fx: f.fx, fy: f.fy, fw: f.fw, fxA: f.fx - 120, fyA: f.fy - 300,
         horaFs: H <= 10 ? 76 : H <= 12 ? 64 : 54,
         localFs: inv ? (L <= 22 ? 42 : L <= 34 ? 36 : 32) : (L <= 34 ? 46 : 38),
         endFs: inv ? (E <= 40 ? 28 : 24) : 30,
         investFs: I <= 6 ? 64 : I <= 9 ? 52 : 40,
       },
       q: {
-        fxA: (f.fx - 120) * k + (880 - 840 * k) / 2, fyA: (f.fy - 300) * k, fw: f.fw * k,
-        fx: 100 + (f.fx - 120) * k + (880 - 840 * k) / 2, fy: 180 + (f.fy - 300) * k,
         horaFs: H <= 10 ? 64 : H <= 12 ? 54 : 46,
         localFs: inv ? (L <= 22 ? 34 : L <= 34 ? 30 : 26) : (L <= 34 ? 38 : 32),
         endFs: inv ? (E <= 40 ? 24 : 21) : 26,
         investFs: I <= 6 ? 54 : I <= 9 ? 44 : 34,
       },
-      fotoThumb: f.fundo,
-      dz: ['parceiro','foto'].reduce((o, key) => {
+      dz: ['parceiro','novo'].reduce((o, key) => {
         const active = f.drag === key;
         o[key] = {
           border: active ? '#C8A227' : '#5C6B79',
           bg: active ? '#FBF6E6' : '#E9EEF2',
+          bg2: active ? '#FBF6E6' : '#fff',
           over: e => { e.preventDefault(); if (f.drag !== key) this.setState({ drag: key }); },
           leave: e => { if (!e.currentTarget.contains(e.relatedTarget)) this.setState({ drag: null }); },
-          drop: e => { e.preventDefault(); this.setState({ drag: null }); const file = e.dataTransfer.files && e.dataTransfer.files[0]; if (key === 'parceiro') this.parceiroFile(file); else this.fotoFile(file); },
+          drop: e => { e.preventDefault(); this.setState({ drag: null }); const file = e.dataTransfer.files && e.dataTransfer.files[0]; if (key === 'parceiro') this.parceiroFile(file); else this.novoFile(file); },
         };
         return o;
       }, {}),

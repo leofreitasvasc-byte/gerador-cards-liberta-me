@@ -1,0 +1,49 @@
+[
+  {
+    "id": "pr-gilnei-peixoto",
+    "nome": "Pr. Gilnei Peixoto",
+    "papel": "",
+    "foto": "fotos/pr-gilnei-peixoto.png",
+    "ativo": true
+  },
+  {
+    "id": "pr-joao-de-souza",
+    "nome": "Pr. João de Souza",
+    "papel": "",
+    "foto": "fotos/pr-joao-de-souza.png",
+    "ativo": true
+  },
+  {
+    "id": "pr-loremar-guimaraes",
+    "nome": "Pr. Loremar Guimarães",
+    "papel": "",
+    "foto": "fotos/pr-loremar-guimaraes.png",
+    "ativo": true,
+    "nomeCompleto": "Pr. Loremar Guimarães"
+  },
+  {
+    "id": "pra-katia-peixoto",
+    "nome": "Pra. Kátia Peixoto",
+    "papel": "",
+    "foto": "fotos/pra-katia-peixoto.png",
+    "ativo": true,
+    "fotoWebp": "fotos/pra-katia-peixoto.webp"
+  },
+  {
+    "id": "pra-rosane-beatriz",
+    "nome": "Pra. Rosane Beatriz",
+    "papel": "",
+    "foto": "fotos/pra-rosane-beatriz.png",
+    "ativo": true,
+    "nomeCompleto": "Pra. Rosane Beatriz",
+    "fotoWebp": "fotos/pra-rosane-beatriz.webp"
+  },
+  {
+    "id": "terceli-knevitz",
+    "nome": "Terceli Knevitz",
+    "papel": "",
+    "foto": "fotos/terceli-knevitz.png",
+    "ativo": true,
+    "fotoWebp": "fotos/terceli-knevitz.webp"
+  }
+]
