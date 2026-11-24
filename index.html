@@ -53,7 +53,14 @@
       </div>
 
       <div style="display:flex;flex-direction:column;gap:14px">
-        <div style="font-size:11px;font-weight:600;letter-spacing:0.34em;text-transform:uppercase;color:#5C6B79;display:flex;gap:10px"><span style="color:#C8A227">01</span><span>Quando</span></div>
+        <div style="font-size:11px;font-weight:600;letter-spacing:0.34em;text-transform:uppercase;color:#5C6B79;display:flex;gap:10px"><span style="color:#C8A227">01</span><span>Nome do evento</span></div>
+        <label style="display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:600">Título principal do convite, até 40 letras
+          <input type="text" maxlength="40" value="{{ f.evento }}" onInput="{{ on.evento }}" placeholder="Imersão de cura e libertação" style="height:46px;padding:0 14px;font:inherit;font-weight:400;font-size:15px;color:#12303F;background:#E9EEF2;border:2px solid #E9EEF2;border-radius:10px;outline:none" style-focus="border-color:#12303F"></input>
+        </label>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <div style="font-size:11px;font-weight:600;letter-spacing:0.34em;text-transform:uppercase;color:#5C6B79;display:flex;gap:10px"><span style="color:#C8A227">02</span><span>Quando</span></div>
         <label style="display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:600">Data
           <input type="date" value="{{ f.data }}" onChange="{{ on.data }}" style="height:46px;padding:0 14px;font:inherit;font-weight:400;font-size:15px;color:#12303F;background:#E9EEF2;border:2px solid #E9EEF2;border-radius:10px;outline:none" style-focus="border-color:#12303F"></input>
         </label>
@@ -68,7 +75,7 @@
       </div>
 
       <div style="display:flex;flex-direction:column;gap:14px">
-        <div style="font-size:11px;font-weight:600;letter-spacing:0.34em;text-transform:uppercase;color:#5C6B79;display:flex;gap:10px"><span style="color:#C8A227">02</span><span>Onde</span></div>
+        <div style="font-size:11px;font-weight:600;letter-spacing:0.34em;text-transform:uppercase;color:#5C6B79;display:flex;gap:10px"><span style="color:#C8A227">03</span><span>Onde</span></div>
         <label style="display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:600">Nome do local
           <input type="text" value="{{ f.local }}" onInput="{{ on.local }}" placeholder="Igreja ou espaço" style="height:46px;padding:0 14px;font:inherit;font-weight:400;font-size:15px;color:#12303F;background:#E9EEF2;border:2px solid #E9EEF2;border-radius:10px;outline:none" style-focus="border-color:#12303F"></input>
         </label>
@@ -79,22 +86,22 @@
 
       <div style="display:flex;flex-direction:column;gap:14px">
         <div style="display:flex;justify-content:space-between;align-items:center">
-          <div style="font-size:11px;font-weight:600;letter-spacing:0.34em;text-transform:uppercase;color:#5C6B79;display:flex;gap:10px"><span style="color:#C8A227">03</span><span>Ingresso solidário</span></div>
+          <div style="font-size:11px;font-weight:600;letter-spacing:0.34em;text-transform:uppercase;color:#5C6B79;display:flex;gap:10px"><span style="color:#C8A227">04</span><span>Ingresso solidário</span></div>
           <label style="display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600"><input type="checkbox" checked="{{ f.showInvest }}" onChange="{{ on.showInvest }}"></input>Mostrar</label>
         </div>
         <sc-if value="{{ f.showInvest }}" hint-placeholder-val="{{ true }}">
           <div style="display:flex;flex-wrap:wrap;gap:8px">
             <sc-for list="{{ ingressos }}" as="ig" hint-placeholder-count="2">
-              <button onClick="{{ ig.pick }}" style="min-height:40px;padding:8px 14px;border-radius:999px;border:2px solid #12303F;background:{{ ig.bg }};color:{{ ig.fg }};font:inherit;font-size:13px;font-weight:700;cursor:pointer">{{ ig.label }}</button>
+              <button onClick="{{ ig.pick }}" style="height:34px;padding:0 14px;border-radius:999px;border:2px solid #12303F;background:{{ ig.bg }};color:{{ ig.fg }};font:inherit;font-size:12px;font-weight:600;cursor:pointer">{{ ig.label }}</button>
             </sc-for>
           </div>
-          <div style="font-size:12px;line-height:1.4;color:#5C6B79">Toca numa opção ou escreve outra coisa nos campos abaixo.</div>
+          <div style="font-size:12px;line-height:1.5;color:#5C6B79">Toca numa opção ou escreve outra coisa nos campos abaixo.</div>
           <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:12px">
             <label style="display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:600">Destaque
-              <input type="text" maxlength="12" value="{{ f.investValor }}" onInput="{{ on.investValor }}" placeholder="Materiais" style="height:46px;padding:0 14px;font:inherit;font-weight:400;font-size:15px;color:#12303F;background:#E9EEF2;border:2px solid #E9EEF2;border-radius:10px;outline:none" style-focus="border-color:#12303F"></input>
+              <input type="text" value="{{ f.investValor }}" onInput="{{ on.investValor }}" placeholder="1 kg ou R$ 50" style="height:46px;padding:0 14px;font:inherit;font-weight:400;font-size:15px;color:#12303F;background:#E9EEF2;border:2px solid #E9EEF2;border-radius:10px;outline:none" style-focus="border-color:#12303F"></input>
             </label>
             <label style="display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:600">Complemento
-              <input type="text" maxlength="30" value="{{ f.investObs }}" onInput="{{ on.investObs }}" placeholder="de higiene pessoal" style="height:46px;padding:0 14px;font:inherit;font-weight:400;font-size:15px;color:#12303F;background:#E9EEF2;border:2px solid #E9EEF2;border-radius:10px;outline:none" style-focus="border-color:#12303F"></input>
+              <input type="text" value="{{ f.investObs }}" onInput="{{ on.investObs }}" placeholder="de alimento não perecível" style="height:46px;padding:0 14px;font:inherit;font-weight:400;font-size:15px;color:#12303F;background:#E9EEF2;border:2px solid #E9EEF2;border-radius:10px;outline:none" style-focus="border-color:#12303F"></input>
             </label>
           </div>
         </sc-if>
@@ -102,7 +109,7 @@
 
       <div style="display:flex;flex-direction:column;gap:14px">
         <div style="display:flex;justify-content:space-between;align-items:center">
-          <div style="font-size:11px;font-weight:600;letter-spacing:0.34em;text-transform:uppercase;color:#5C6B79;display:flex;gap:10px"><span style="color:#C8A227">04</span><span>Chamada do evento</span></div>
+          <div style="font-size:11px;font-weight:600;letter-spacing:0.34em;text-transform:uppercase;color:#5C6B79;display:flex;gap:10px"><span style="color:#C8A227">05</span><span>Chamada do evento</span></div>
           <label style="display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600"><input type="checkbox" checked="{{ f.showChamada }}" onChange="{{ on.showChamada }}"></input>Mostrar</label>
         </div>
         <sc-if value="{{ f.showChamada }}" hint-placeholder-val="{{ true }}">
@@ -120,7 +127,7 @@
 
       <div style="display:flex;flex-direction:column;gap:14px">
         <div style="display:flex;justify-content:space-between;align-items:center">
-          <div style="font-size:11px;font-weight:600;letter-spacing:0.34em;text-transform:uppercase;color:#5C6B79;display:flex;gap:10px"><span style="color:#C8A227">05</span><span>Igreja parceira</span></div>
+          <div style="font-size:11px;font-weight:600;letter-spacing:0.34em;text-transform:uppercase;color:#5C6B79;display:flex;gap:10px"><span style="color:#C8A227">06</span><span>Igreja parceira</span></div>
           <label style="display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600"><input type="checkbox" checked="{{ f.showParceiro }}" onChange="{{ on.showParceiro }}"></input>Mostrar</label>
         </div>
         <sc-if value="{{ f.showParceiro }}" hint-placeholder-val="{{ true }}">
@@ -140,7 +147,7 @@
 
       <div style="display:flex;flex-direction:column;gap:14px">
         <div style="display:flex;justify-content:space-between;align-items:center">
-          <div style="font-size:11px;font-weight:600;letter-spacing:0.34em;text-transform:uppercase;color:#5C6B79;display:flex;gap:10px"><span style="color:#C8A227">06</span><span>Preletores</span></div>
+          <div style="font-size:11px;font-weight:600;letter-spacing:0.34em;text-transform:uppercase;color:#5C6B79;display:flex;gap:10px"><span style="color:#C8A227">07</span><span>Preletores</span></div>
           <div style="font-size:12px;font-weight:600;color:#5C6B79">{{ contagem }}</div>
         </div>
         <div style="font-size:12px;line-height:1.5;color:#5C6B79">Toca em quem vai estar no evento. A ordem do convite é a ordem em que tu marca. O layout se reorganiza sozinho.</div>
@@ -217,8 +224,7 @@
               </sc-for>
               <div style="position:absolute;left:120px;right:120px;top:960px;height:340px;z-index:3;background:linear-gradient(180deg,rgba(13,53,102,0) 0%,rgba(13,53,102,0.85) 70%,#0D3566 100%);pointer-events:none"></div>
               <div style="position:absolute;left:120px;right:120px;bottom:720px;z-index:4;display:flex;flex-direction:column;align-items:center;gap:22px;text-align:center">
-                <div style="font-size:28px;letter-spacing:0.24em;text-transform:uppercase;font-weight:600;background:#0D3566;color:#fff;padding:14px 32px;border-radius:999px">Imersão de cura e libertação</div>
-                <div style="font-size:112px;font-weight:300;line-height:1;letter-spacing:-0.02em">Venha como<br>você <span style="font-style:italic">está.</span></div>
+                <div style="font-size:{{ ev.sA }}px;font-weight:300;line-height:1.02;letter-spacing:-0.02em;text-wrap:balance">{{ f.evento }}</div>
               </div>
               <div style="position:absolute;left:96px;right:96px;top:96px;z-index:4;display:flex;justify-content:space-between;align-items:center">
                 <img src="assets/logo-negativo.svg" alt="Liberta-me" style="height:150px"></img>
@@ -245,7 +251,7 @@
                   </div>
                   <sc-if value="{{ f.showInvest }}" hint-placeholder-val="{{ true }}">
                     <div style="background:#fff;color:#0D3566;padding:36px 40px;border-radius:28px;display:flex;flex-direction:column;gap:8px">
-                      <div style="font-size:24px;letter-spacing:0.22em;text-transform:uppercase;font-weight:600;color:#2B82EE">Ingresso solidário</div>
+                      <div style="font-size:20px;letter-spacing:0.1em;text-transform:uppercase;font-weight:600;color:#2B82EE;white-space:nowrap">Ingresso solidário</div>
                       <div style="font-size:{{ s.investFs }}px;font-weight:500;line-height:1.05;letter-spacing:-0.01em">{{ f.investValor }}</div>
                       <div style="font-size:30px;font-weight:400;line-height:1.3">{{ f.investObs }}</div>
                     </div>
@@ -263,8 +269,7 @@
                   </sc-if>
                 </div>
                 <div style="display:flex;flex-direction:column;align-items:center;gap:20px;text-align:center">
-                  <div style="font-size:26px;letter-spacing:0.24em;text-transform:uppercase;font-weight:600;border:2px solid #2B82EE;padding:10px 30px;border-radius:999px">Imersão de cura e libertação</div>
-                  <div style="font-size:80px;font-weight:300;line-height:1;letter-spacing:-0.02em">Venha como você <span style="font-style:italic">está.</span></div>
+                  <div style="font-size:{{ ev.sF }}px;font-weight:300;line-height:1.02;letter-spacing:-0.02em;text-wrap:balance">{{ f.evento }}</div>
                 </div>
                 <div ref="{{ zoneSRef }}" style="flex:1;min-height:0;display:flex;flex-direction:column;align-items:center;justify-content:center">
                   <sc-if value="{{ semPessoas }}" hint-placeholder-val="{{ false }}">
@@ -337,7 +342,7 @@
                     </div>
                     <sc-if value="{{ f.showInvest }}" hint-placeholder-val="{{ true }}">
                       <div style="background:#fff;color:#0D3566;padding:30px 36px;border-radius:28px;display:flex;flex-direction:column;gap:8px">
-                        <div style="font-size:24px;letter-spacing:0.22em;text-transform:uppercase;font-weight:600;color:#2B82EE">Ingresso solidário</div>
+                        <div style="font-size:20px;letter-spacing:0.1em;text-transform:uppercase;font-weight:600;color:#2B82EE;white-space:nowrap">Ingresso solidário</div>
                         <div style="font-size:{{ s.investFs }}px;font-weight:500;line-height:1.05">{{ f.investValor }}</div>
                         <div style="font-size:28px;font-weight:400;line-height:1.3">{{ f.investObs }}</div>
                       </div>
@@ -376,8 +381,7 @@
               </sc-for>
               <div style="position:absolute;left:100px;right:100px;top:600px;height:220px;z-index:3;background:linear-gradient(180deg,rgba(13,53,102,0) 0%,rgba(13,53,102,0.85) 70%,#0D3566 100%);pointer-events:none"></div>
               <div style="position:absolute;left:100px;right:100px;bottom:580px;z-index:4;display:flex;flex-direction:column;align-items:center;gap:18px;text-align:center">
-                <div style="font-size:22px;letter-spacing:0.24em;text-transform:uppercase;font-weight:600;background:#0D3566;color:#fff;padding:12px 28px;border-radius:999px">Imersão de cura e libertação</div>
-                <div style="font-size:84px;font-weight:300;line-height:1;letter-spacing:-0.02em">Venha como você <span style="font-style:italic">está.</span></div>
+                <div style="font-size:{{ ev.qA }}px;font-weight:300;line-height:1.02;letter-spacing:-0.02em;text-wrap:balance">{{ f.evento }}</div>
               </div>
               <div style="position:absolute;left:80px;right:80px;top:56px;z-index:4;display:flex;justify-content:space-between;align-items:center">
                 <img src="assets/logo-negativo.svg" alt="Liberta-me" style="height:120px"></img>
@@ -404,7 +408,7 @@
                   </div>
                   <sc-if value="{{ f.showInvest }}" hint-placeholder-val="{{ true }}">
                     <div style="background:#fff;color:#0D3566;padding:28px 32px;border-radius:24px;display:flex;flex-direction:column;gap:6px">
-                      <div style="font-size:20px;letter-spacing:0.22em;text-transform:uppercase;font-weight:600;color:#2B82EE">Ingresso solidário</div>
+                      <div style="font-size:17px;letter-spacing:0.1em;text-transform:uppercase;font-weight:600;color:#2B82EE;white-space:nowrap">Ingresso solidário</div>
                       <div style="font-size:{{ q.investFs }}px;font-weight:500;line-height:1.05">{{ f.investValor }}</div>
                       <div style="font-size:24px;font-weight:400;line-height:1.3">{{ f.investObs }}</div>
                     </div>
@@ -422,8 +426,7 @@
                   </sc-if>
                 </div>
                 <div style="display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center">
-                  <div style="font-size:20px;letter-spacing:0.24em;text-transform:uppercase;font-weight:600;border:2px solid #2B82EE;padding:6px 22px;border-radius:999px">Imersão de cura e libertação</div>
-                  <div style="font-size:54px;font-weight:300;line-height:1;letter-spacing:-0.02em">Venha como você <span style="font-style:italic">está.</span></div>
+                  <div style="font-size:{{ ev.qF }}px;font-weight:300;line-height:1.02;letter-spacing:-0.02em;text-wrap:balance">{{ f.evento }}</div>
                 </div>
                 <div ref="{{ zoneQRef }}" style="flex:1;min-height:0;display:flex;flex-direction:column;align-items:center;justify-content:center">
                   <sc-if value="{{ semPessoas }}" hint-placeholder-val="{{ false }}">
@@ -496,7 +499,7 @@
                     </div>
                     <sc-if value="{{ f.showInvest }}" hint-placeholder-val="{{ true }}">
                       <div style="background:#fff;color:#0D3566;padding:18px 26px;border-radius:22px;display:flex;flex-direction:column;gap:4px">
-                        <div style="font-size:18px;letter-spacing:0.22em;text-transform:uppercase;font-weight:600;color:#2B82EE">Ingresso solidário</div>
+                        <div style="font-size:15px;letter-spacing:0.1em;text-transform:uppercase;font-weight:600;color:#2B82EE;white-space:nowrap">Ingresso solidário</div>
                         <div style="font-size:{{ q.investFs }}px;font-weight:500;line-height:1.05">{{ f.investValor }}</div>
                         <div style="font-size:22px;font-weight:400;line-height:1.3">{{ f.investObs }}</div>
                       </div>
@@ -514,16 +517,12 @@
   </div>
 </div>
 </x-dc>
-<!-- Modo Vídeo (Vereda): prévia e exportação do convite em vídeo -->
-<style>#dc-root, #dc-root > .sc-host { height: auto !important; min-height: 100%; }</style>
-<section style="background:#E9EEF2;padding:0 0 48px">
-  <div style="height:28px;position:relative"><div style="position:absolute;inset:0;background:#12303F;clip-path:polygon(0 0,100% 0,100% 0,0 100%)"></div><div style="position:absolute;right:0;top:0;width:26%;height:100%;background:#C8A227;clip-path:polygon(0 100%,100% 0,100% 100%)"></div></div>
-  <div id="liberta-motion"></div>
-</section>
-<script type="module" src="./motion/motion.js"></script>
-
 <script type="text/x-dc" data-dc-script>
-const KEY = 'liberta-gerador-v6';
+const KEY = 'liberta-gerador-v7';
+const INGRESSOS = [
+  { label: '1 kg de alimento não perecível', valor: '1 kg', obs: 'de alimento não perecível' },
+  { label: 'Materiais de higiene', valor: 'Materiais', obs: 'de higiene pessoal' },
+];
 const MAX = 8;
 const BANCO_PADRAO = [
   { id: 'pr-gilnei-peixoto', nome: 'Pr. Gilnei Peixoto', papel: '', foto: 'fotos/pr-gilnei-peixoto.png' },
@@ -535,22 +534,18 @@ const BANCO_PADRAO = [
 ];
 const DEFAULTS = {
   modelo: 'arco',
+  evento: 'Imersão de cura e libertação',
   data: '2026-11-28', inicio: '14:00', fim: '21:00',
   local: 'INC Igreja Nascidos para Cristo', endereco: 'Av. General Flores da Cunha, 47 · Cachoeirinha',
-  showInvest: true, investValor: 'Materiais', investObs: 'de higiene pessoal',
+  showInvest: true, investValor: '1 kg', investObs: 'de alimento não perecível',
   showChamada: true, chamada: 'Último encontro do ano',
   showParceiro: true, parceiro: null, ls: 100,
   sel: ['pr-gilnei-peixoto', 'pra-katia-peixoto', 'pr-joao-de-souza', 'pra-rosane-beatriz'],
   trat: 'Natural', ajY: 0, ajS: 100,
   novoNome: '', novoPapel: '',
 };
-const SAVE_KEYS = ['modelo','data','inicio','fim','local','endereco','showInvest','investValor','investObs','showChamada','chamada','showParceiro','ls','sel','trat','ajY','ajS'];
+const SAVE_KEYS = ['modelo','evento','data','inicio','fim','local','endereco','showInvest','investValor','investObs','showChamada','chamada','showParceiro','ls','sel','trat','ajY','ajS'];
 const DIAS = ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado'];
-// Ingresso solidário: opções prontas (o destaque vai grande no card, o complemento embaixo)
-const INGRESSOS = [
-  { label: '1 kg de alimento não perecível', valor: '1 kg', obs: 'de alimento não perecível' },
-  { label: 'Materiais de higiene', valor: 'Materiais', obs: 'de higiene pessoal' },
-];
 const MODELOS = [
   { key: 'arco', label: 'Arco', desc: 'Pessoas juntas no arco' },
   { key: 'cards', label: 'Cartões', desc: 'Foto e nome em cartões' },
@@ -832,7 +827,7 @@ class Component extends DCLogic {
     const ajY = f.ajY || 0, ajS = (f.ajS || 100) / 100;
 
     const on = {};
-    ['data','inicio','fim','local','endereco','investValor','investObs','chamada','novoNome','novoPapel'].forEach(key => on[key] = e => this.set(key, e.target.value));
+    ['evento','data','inicio','fim','local','endereco','investValor','investObs','chamada','novoNome','novoPapel'].forEach(key => on[key] = e => this.set(key, e.target.value));
     ['showInvest','showChamada','showParceiro'].forEach(key => on[key] = e => this.set(key, e.target.checked));
     ['ls','ajY','ajS'].forEach(key => on[key] = e => this.set(key, +e.target.value));
     on.parceiroFile = e => this.onParceiro(e);
@@ -843,11 +838,11 @@ class Component extends DCLogic {
     const mk = f.modelo || 'arco';
 
     return {
+      ev: (() => { const n = (f.evento || '').length; return { sA: n <= 30 ? 104 : 88, sF: n <= 30 ? 76 : 64, qA: n <= 30 ? 68 : 58, qF: n <= 30 ? 54 : 46 }; })(),
       f, on, status: f.status, busy: f.busy,
       storyRef: this.storyRef, feedRef: this.feedRef, zoneSRef: this.zoneSRef, zoneQRef: this.zoneQRef,
       m: { arco: mk === 'arco', flex: mk !== 'arco', cards: mk === 'cards', ret: mk === 'ret', vid: mk === 'vid' },
       modeloNome: (MODELOS.find(x => x.key === mk) || MODELOS[0]).label,
-      ingressos: INGRESSOS.map(x => { const ativo = f.investValor === x.valor && f.investObs === x.obs; return { ...x, pick: () => this.setState({ investValor: x.valor, investObs: x.obs, showInvest: true }, () => this.save()), bg: ativo ? '#12303F' : '#fff', fg: ativo ? '#fff' : '#12303F' }; }),
       modelos: MODELOS.map(x => ({ ...x, pick: () => this.set('modelo', x.key), bg: mk === x.key ? '#12303F' : '#fff', fg: mk === x.key ? '#fff' : '#12303F' })),
       tratamentos: Object.keys(FILTROS).map(label => ({ label, pick: () => this.set('trat', label), bg: f.trat === label ? '#12303F' : '#fff', fg: f.trat === label ? '#fff' : '#12303F' })),
       pessoas: todos.map(p => {
@@ -870,13 +865,13 @@ class Component extends DCLogic {
         horaFs: H <= 10 ? 76 : H <= 12 ? 64 : 54,
         localFs: inv ? (L <= 22 ? 42 : L <= 34 ? 36 : 32) : (L <= 34 ? 46 : 38),
         endFs: inv ? (E <= 40 ? 28 : 24) : 30,
-        investFs: I <= 6 ? 64 : I <= 9 ? 52 : 40,
+        investFs: I <= 6 ? 64 : I <= 9 ? 52 : I <= 12 ? 42 : 34,
       },
       q: {
         horaFs: H <= 10 ? 64 : H <= 12 ? 54 : 46,
         localFs: inv ? (L <= 22 ? 34 : L <= 34 ? 30 : 26) : (L <= 34 ? 38 : 32),
         endFs: inv ? (E <= 40 ? 24 : 21) : 26,
-        investFs: I <= 6 ? 54 : I <= 9 ? 44 : 34,
+        investFs: I <= 6 ? 54 : I <= 9 ? 44 : I <= 12 ? 36 : 30,
       },
       dz: ['parceiro','novo'].reduce((o, key) => {
         const active = f.drag === key;
@@ -890,6 +885,7 @@ class Component extends DCLogic {
         };
         return o;
       }, {}),
+      ingressos: INGRESSOS.map(o => { const on = f.investValor === o.valor && f.investObs === o.obs; return { label: o.label, pick: () => this.setState({ investValor: o.valor, investObs: o.obs, showInvest: true }, () => this.save()), bg: on ? '#12303F' : '#fff', fg: on ? '#fff' : '#12303F' }; }),
       sugestoes: ['Primeiro encontro do ano','Último encontro do ano','Edição especial','Vagas limitadas'].map(label => ({ label, pick: () => this.set('chamada', label), bg: f.chamada === label ? '#12303F' : '#fff', fg: f.chamada === label ? '#fff' : '#12303F' })),
       baixarStory: () => this.baixar('story'),
       baixarFeed: () => this.baixar('feed'),
